@@ -13,11 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-Route::get('/todo', function () {
-  return view('todopage');
-});
+use App\Http\Controllers\todoController;
+Route::any('/', "todoController@show");

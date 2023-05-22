@@ -1,3 +1,4 @@
+
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -23,8 +24,8 @@
       </select>
     </form>
 
-    <form id="new-task" action = "" method="post">
-      <label>Create new task</label>
+    <form id="new-task" action = "Http/Controllers/todoController.php" method="post">
+      <label><h3>Create new task</h3></label>
       <br/>Name:
       <input id="name" type="text" value="name of your task...">
       <br/>Description:<br/>
@@ -36,9 +37,13 @@
       <input id="prio3" name="priority" type="radio">3</input>
       <input id="prio4" name="priority" type="radio">4</input>
       <input id="prio5" name="priority" type="radio">5</input>
-
-
+      <br>
+      <input id="submit" type="submit" value="Create the task">
     </form>
+
+
+
+
 
     <!--list of tasks should display here-->
 
