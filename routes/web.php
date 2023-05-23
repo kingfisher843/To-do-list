@@ -13,5 +13,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Http\Controllers\todoController;
-Route::any('/', "todoController@show");
+
+use App\Models\Task;
+use Illuminate\Http\Request;
+
+/**
+* Show the task list
+*/
+Route::get('/', function() {
+  return view('tasks', ['tasks' => Task::all()]);
+});
+
+
+/**
+* Add new task
+*/
+Route::post('/new-task', function (Request $request) {
+  $validator = Validator::make($request->all(), [
+    'name' => 'required|max:50',
+    'description' => 'required|max:100',
+  ]);
+  if ($validator->fails()) {
+    return redirect('/')
+        ->withInput()
+        ->withErrors($validator);
+  }
+  $task = new Task;
+  $task->name = $request->name;
+  $task->description = $request->description;
+  $task->save();
+
+  return redirect('/');
+});
+/**
+* Delete task/s
+*/
+Route::delete('/delete/{task}', function (Task $task) {
+
+});
