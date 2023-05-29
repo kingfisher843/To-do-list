@@ -18,7 +18,7 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 
 /**
-* Show the task list
+* Show tasks list
 */
 Route::get('/', function() {
   $tasks = Task::orderBy('created_at', 'asc')->get();
@@ -30,26 +30,11 @@ Route::get('/', function() {
 /**
 * Add new task
 */
-Route::post('/new-task', function (Request $request) {
-  $validator = Validator::make($request->all(), [
-    'name' => 'required|max:50',
-    'description' => 'required|max:100',
-  ]);
-  if ($validator->fails()) {
-    return redirect('/')
-        ->withInput()
-        ->withErrors($validator);
-  }
-  $task = new Task;
-  $task->name = $request->name;
-  $task->description = $request->description;
-  $task->save();
-
-  return redirect('/');
-});
+use App\Http\Controllers\newtaskController;
+Route::post('/newtask', [newtaskController::class, 'createTask']);
 
 /**
-* Delete task/s
+* Delete task
 */
 Route::delete('/delete/{task}', function (Task $task) {
 

@@ -6,6 +6,6 @@ To-do:
 5. Display encouraging and appreciating message when the task is finished
 
 Where should i put this? (that's what he said!)
-1. todopage.blade.php in resources/views + route('/') in routes
+1. tasks.blade.php in resources/views + route('/') in routes
 2. + 3. Storing in the mysql database created in laravel, handled by todoController.php in app/Http/Controller
 Displayed in the file from point 1.
