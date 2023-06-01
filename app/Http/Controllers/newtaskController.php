@@ -7,10 +7,12 @@ use App\Models\Task;
 
 class newtaskController extends Controller
 {
+  
   /**
   * @param Request $request
-  * @return redirect ('/');
+  * @return redirect ('/') (after handling the request)
   */
+  
   public function createTask(Request $request)
    {
     $validator = Validator::make($request->all(), [
@@ -18,9 +20,9 @@ class newtaskController extends Controller
     ]);
     if ($validator->fails()) {
       return redirect('/')
-          ->withInput();
-          ->withErrors($validator);
-    }
+          ->withInput()
+          ->withErrors();
+            }
     $task = new Task;
     $task->name = $request->name;
     $task->description = $request->description;
@@ -28,4 +30,4 @@ class newtaskController extends Controller
 
     return redirect('/');
   }
-}
+} 

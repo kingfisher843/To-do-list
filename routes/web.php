@@ -20,7 +20,8 @@ use Illuminate\Http\Request;
 /**
 * Show tasks list
 */
-Route::get('/', function() {
+Route::get('/', function()
+{
   $tasks = Task::orderBy('created_at', 'asc')->get();
 
   return view('tasks', ['tasks' => $tasks]);
@@ -31,7 +32,24 @@ Route::get('/', function() {
 * Add new task
 */
 use App\Http\Controllers\newtaskController;
-Route::post('/newtask', [newtaskController::class, 'createTask']);
+Route::post('/newtask', function (Request $request) {
+  $validator = Validator::make($request->all(), [
+      "name" => "required|max:255",
+  ]);
+
+  if ($validator->fails()) {
+      return redirect('/')
+          ->withInput()
+          ->withErrors($validator);
+  }
+
+  $task = new Task;
+  $task->name = $request->name;
+  $task->description = $request->description;
+  $task->save();
+
+  return redirect('/');
+});
 
 /**
 * Delete task
