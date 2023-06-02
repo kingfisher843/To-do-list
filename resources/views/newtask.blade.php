@@ -7,19 +7,20 @@
   <div class="content">
 
     <!-- New task form-->
-    <form method="POST" action="{{ url('newtask') }}" id="newtask" name="newtask">
+    <form method="post" action="{{ url('newtask') }}" id="newtask" name="newtask">
         @csrf
+        @method('post')
         <div class="form-block">
           <label for="name">Task:</label>
           <input type="text" name="name" id="name">
           <br/>
         </div>
         <div class="form-block">
-          <label for="description">Description (optional):</label>
+          <label for="description">Optional description:</label>
           <input type="text" name="description" id="description">
         </div>
         <div class="form-submit">
-          <button type="submit"><img src="{{URL('/images/checkme.svg')}}"></button>
+          <input type="submit" name="submit" id="submit">
         </div>
     </form>
   </div>
