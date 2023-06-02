@@ -9,6 +9,7 @@
     <!-- New task form-->
     <form method="POST" action="/newtask" id="newtask" name="newtask">
         @csrf
+        @method('post');
           <label for="name">Task:</label>
           <input type="text" name="name" id="name">
           <br/>
