@@ -18,7 +18,7 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 /**
-* Show tasks list
+* Display tasks
 */
 Route::get('/', function()
 {

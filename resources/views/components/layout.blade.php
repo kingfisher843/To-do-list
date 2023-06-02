@@ -1,5 +1,6 @@
 <html lang="en">
 <head>
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta charset="utf-8">
   <meta name="to-do" content="Simple app for storing and updating your own to-do list.">
 
