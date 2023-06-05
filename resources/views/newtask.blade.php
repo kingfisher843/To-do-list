@@ -7,19 +7,19 @@
   <div class="content">
 
     <!-- New task form-->
-    <form method="POST" action="/newtask" id="newtask" name="newtask">
-        @csrf
-        @method('post');
+    <form method="POST" action="{{url('/tasks/new')}}" id="newtask" name="newtask">
+      @csrf  
           <label for="name">Task:</label>
           <input type="text" name="name" id="name">
-          <br/>
+          <br>
        
-          <label for="description">Optional description:</label>
-          <input type="text" name="description" id="description">
-          <br/>
+          <label for="description">Description (optional)</label>
+          <textarea name="description" id="description"></textarea>
+          <br>
+          <button type="submit" form="newtask">Done!</button>
           
-          <input type="submit" name="submit" id="submit" value="Done!">
     </form>
+
   </div>
 
 </x-layout>

@@ -31,9 +31,12 @@ Route::get('/', function()
 /**
 * Add new task
 */
-use App\Http\Controllers\newtaskController;
+use App\Http\Controllers\TaskController;
 
-Route::post('/newtask', [newtaskController::class, 'createTask']);
+Route::get('/tasks/new', [TaskController::class, 'create']);
+Route::post('/tasks/new', [TaskController::class, 'save']);
+
+
 
 /**
 * Delete task
