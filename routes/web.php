@@ -20,9 +20,10 @@ use Illuminate\Http\RedirectResponse;
 /**
 * Display tasks
 */
-Route::get('/', function()
+
+Route::get('/{slug?}', function(string $slug ="asc")
 {
-  $tasks = Task::orderBy('created_at', 'asc')->get();
+  $tasks = Task::orderBy('created_at', $slug)->get();
 
   return view('tasks', ['tasks' => $tasks]);
 });

@@ -2,7 +2,7 @@ To-do:
 1. Interface - the page must contain header, filter tool, list of tasks, and tool for creating new tasks
 2. Tasks are stored and displayed as a list of clickable objects (but they don't have to be objects)
 3. When checkbox linked with task is clicked, status of the task is changed. This is seen as a graphic change, but it's a database change too.
-4. Filter tool can switch between different sorting of task (Sort by: the latest, the oldest, highest priority, lowest priority)
+4. Filter tool can switch between different sorting of task (Sort by: the latest, the oldest)
 5. Display encouraging and appreciating message when the task is finished
 
 Where should i put this? (that's what he said!)
