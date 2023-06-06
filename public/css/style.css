@@ -1,0 +1,41 @@
+ * {
+  font-family:Arial, Helvetica, sans-serif;
+ }
+
+ #logo {
+   background-color: rgb(14, 10, 26);
+   width: auto;
+   padding: 30px;
+   text-align: center;
+   color: white;
+ }
+#container {
+  background-color: bisque;
+  color:black;
+  width:auto;
+}
+#task {
+  background-color:rgb(204, 204, 204);
+  margin-left:20px;
+  margin-bottom:20px;
+  padding:10px;
+  border-style: groove;
+  border-color: black;
+  border-radius:5px;
+  border-width: 2px;
+  width: 50%;
+}
+table, th, td {
+  border: 1px solid;
+  width: 100%;
+  height:fit-content;
+}
+
+#test {
+  background-color: rgb(37, 19, 94);
+  width: 100%;
+  padding: 5px;
+  text-align: left;
+  color: rgb(255, 255, 255);
+
+}

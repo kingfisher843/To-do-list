@@ -14,13 +14,23 @@
     <option value="asc"> oldest </option>
     <option value="desc"> latest </option>
   </select>
-
+  
   <!--LIST OF TASKS-->
+  <br/><br/>
   @foreach ($tasks as $task)
-  <div class="task">
-  <h3> <input type="checkbox" id="checkbox">
-    <label for="checkbox">{{ $task->name }}</h3></label>
-  <h5 style="color:gray">{{ $task->description }}</h5>
+  <div id="task">
+
+    <table> 
+      <tr id="name">
+        <td rowspan="2" style="width:10%"><h3><input type="checkbox" id="checkbox"></h3></td>
+        <td><h3><label for="checkbox">{{ $task->name }}</h3></label></td>
+      </tr>
+      <tr id="desc">
+        
+        <td><h5 style="color:gray">{{ $task->description }}</h5></td>
+      </tr>
+  </table>
   </div>
+
   @endforeach
 </x-layout>

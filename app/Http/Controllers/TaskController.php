@@ -24,11 +24,13 @@ class TaskController extends Controller
   {
     
     $task = new Task;
-    $task->name = $request->input('name');
+    $task->name = $request->input('name');    
     $task->description = $request->input('description');
+    
+
     $task->save();
 
     return redirect('/');
-  
+    
    }
 }
