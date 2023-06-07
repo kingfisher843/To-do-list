@@ -33,8 +33,8 @@ Route::get('/{slug?}', [TaskController::class, 'show']);
 
 Route::get('/tasks/new', [TaskController::class, 'create']);
 Route::post('/tasks/new', [TaskController::class, 'save']);
-//Route::delete('/delete/{task}', [TaskController::class, 'delete']);
+
 /**
 * Delete task
 */
-
+Route::delete('/delete/{task}', [TaskController::class, 'destroy']);

@@ -18,29 +18,31 @@
   <!--LIST OF TASKS-->
   <br/><br/>
   @foreach ($tasks as $task)
-  <div id="task">
-
+    {{$task->id}}
+  <div id="task-table">
+    <!--EACH TASK IS A TABLE-->
     <table> 
-      <tr id="name">
-        <td rowspan="2" style="width:10%"><h3><input type="checkbox" id="checkbox"></h3></td>
-        <td><h3><label for="checkbox">{{ $task->name }}</h3></label></td>
-        <td><!--EDIT TASK-->
+      <tr>
+        <td id="checkbox-place" rowspan="2"><h3><input type="checkbox" id="checkbox"></h3></td>
+        <td><span id="task-name"><h3><label for="checkbox">{{ $task->name }}</h3></label></span></td>
         <td>
-          
-          <form action="delete/{{$task->id}}" id="delete-form" method="POST">
+
+          <form action="{{url('delete/'.$task->id)}}" id="delete-form" method="POST">
             @csrf
             @method('DELETE')
             <button form="delete-form">Delete</button>
           </form>
+
       </tr>
+
       <tr id="desc">
-        
         <td><h5 style="color:gray">{{ $task->description }}</h5></td>
+        <td><!--EDIT TASK-->
+          <button>Edit</button></td>
       </tr>
+
   </table>
   </div>
 
   @endforeach
 </x-layout>
-
-@function 

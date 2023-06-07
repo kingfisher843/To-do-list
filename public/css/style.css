@@ -10,17 +10,21 @@
    color: white;
  }
 #container {
-  background-color: bisque;
+  background-color: rgb(255, 255, 255);
   color:black;
   width:auto;
 }
-#task {
-  background-color:rgb(204, 204, 204);
+#checkbox-place{
+  width: 10%;
+}
+#task-table {
+  background-color:white;
+  color:black;
   margin-left:20px;
   margin-bottom:20px;
   padding:10px;
   border-style: groove;
-  border-color: black;
+  border-color: rgb(218, 123, 0);
   border-radius:5px;
   border-width: 2px;
   width: 50%;
