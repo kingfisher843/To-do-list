@@ -10,11 +10,19 @@ use Illuminate\View\View;
 
 class TaskController extends Controller
 {
+  
+  public function show($slug ="asc"): View
+  {
+    $tasks = Task::orderBy('created_at', $slug)->get();
+  
+    return view('tasks', ['tasks' => $tasks]);
+  }
+
+
   public function create(Request $request): View
   {
     return view('newtask');
   }
-
 
   /**
   * @param Request $request
@@ -26,11 +34,16 @@ class TaskController extends Controller
     $task = new Task;
     $task->name = $request->input('name');    
     $task->description = $request->input('description');
-    
-
     $task->save();
 
     return redirect('/');
-    
+
    }
+
+  //  public function delete($id)
+  //  {   
+  //      $task = Task::findOrFail($id);
+  //      $task->delete();
+  //      return redirect('/');
+  //  }
 }

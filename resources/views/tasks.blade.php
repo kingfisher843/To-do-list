@@ -24,6 +24,14 @@
       <tr id="name">
         <td rowspan="2" style="width:10%"><h3><input type="checkbox" id="checkbox"></h3></td>
         <td><h3><label for="checkbox">{{ $task->name }}</h3></label></td>
+        <td><!--EDIT TASK-->
+        <td>
+          
+          <form action="delete/{{$task->id}}" id="delete-form" method="POST">
+            @csrf
+            @method('DELETE')
+            <button form="delete-form">Delete</button>
+          </form>
       </tr>
       <tr id="desc">
         
@@ -34,3 +42,5 @@
 
   @endforeach
 </x-layout>
+
+@function 

@@ -30,12 +30,3 @@ table, th, td {
   width: 100%;
   height:fit-content;
 }
-
-#test {
-  background-color: rgb(37, 19, 94);
-  width: 100%;
-  padding: 5px;
-  text-align: left;
-  color: rgb(255, 255, 255);
-
-}

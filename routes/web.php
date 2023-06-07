@@ -17,31 +17,24 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\TaskController;
+
 /**
 * Display tasks
 */
 
-Route::get('/{slug?}', function(string $slug ="asc")
-{
-  $tasks = Task::orderBy('created_at', $slug)->get();
-
-  return view('tasks', ['tasks' => $tasks]);
-});
+Route::get('/{slug?}', [TaskController::class, 'show']);
 
 
 /**
 * Add new task
 */
-use App\Http\Controllers\TaskController;
+
 
 Route::get('/tasks/new', [TaskController::class, 'create']);
 Route::post('/tasks/new', [TaskController::class, 'save']);
-
-
-
+//Route::delete('/delete/{task}', [TaskController::class, 'delete']);
 /**
 * Delete task
 */
-Route::delete('/delete/{task}', function (Task $task) {
 
-});
