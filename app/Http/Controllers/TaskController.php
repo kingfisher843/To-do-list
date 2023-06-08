@@ -34,11 +34,28 @@ class TaskController extends Controller
     $task = new Task;
     $task->name = $request->input('name');    
     $task->description = $request->input('description');
-    $task->save();
+    $task->touch();
+   
 
     return redirect('/');
 
-   }
+  }
+  
+  public function edit($id): View
+  {
+    return view('edit', [
+      'task' => Task::findOrFail($id)
+    ]);
+  }
+
+  public function patch($id, Request $request)
+  {
+    $task = Task::findOrFail($id);
+    $task->name = $request->input('name');    
+    $task->description = $request->input('description');
+    $task->save();
+    return redirect('/');
+  }
 
   public function destroy(Task $task)
   {   

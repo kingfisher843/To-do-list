@@ -22,8 +22,8 @@ use App\Http\Controllers\TaskController;
 /**
 * Display tasks
 */
-
-Route::get('/{slug?}', [TaskController::class, 'show']);
+Route::redirect('/', '/tasks');
+Route::get('/tasks', [TaskController::class, 'show']);
 
 
 /**
@@ -34,6 +34,11 @@ Route::get('/{slug?}', [TaskController::class, 'show']);
 Route::get('/tasks/new', [TaskController::class, 'create']);
 Route::post('/tasks/new', [TaskController::class, 'save']);
 
+/**
+ * Edit task
+ */
+Route::get('/edit/{id}', [TaskController::class, 'edit']);
+Route::patch('/edit/{id}', [TaskController::class, 'patch']);
 /**
 * Delete task
 */
