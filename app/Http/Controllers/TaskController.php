@@ -11,13 +11,11 @@ use Illuminate\View\View;
 class TaskController extends Controller
 {
   
-  public function show($slug ="asc"): View
+  public function show(): View
   {
-    $tasks = Task::orderBy('created_at', $slug)->get();
-  
+   $tasks = Task::orderBy('created_at', "asc")->get();
     return view('tasks', ['tasks' => $tasks]);
   }
-
 
   public function create(Request $request): View
   {

@@ -10,53 +10,51 @@
   </form>
   <br>
 
-  <!--FILTER TOOL-->
+  <!--SORTING TOOL-->
 
-  <label for="filter-tool">Sort by:</label>
-
-  <form id="filter-tool" action="/" method="POST">
-  <select name="filter">
-    <option value="old"> oldest </option>
-    <option value="new"> latest </option>
-    <option value="update">recently updated</option> 
-  </select>
-  </form>
 
   <!--LIST OF TASKS-->
-
   <br/><br/>
   @foreach ($tasks as $task)
-    {{$task->updated_at}}
-  <div id="task-table">
-    <!--EACH TASK IS A TABLE-->
-    <table> 
-      <tr>
-        <td id="checkbox-place" rowspan="2"><h3><input type="checkbox" id="checkbox"></h3></td>
-        <td>
-          <span id="task-name"><h3><label for="checkbox">{{ $task->name }}</h3></label></span>
-          <hr>
-        </td>
-        <td>
-          <!--DELETE-->
-          <form action="{{url('delete/'.$task->id)}}" id="delete-form" method="POST">
-            @csrf
-            @method('DELETE')
-            <button form="delete-form">Delete</button>
-          </form>
+    <div class="row">
+      <div class="col-md 3">
+        <input type="checkbox" id="checkbox">
+      </div>
+      <div class="col-md 6">
+        <h3>{{ $task->name }}</h3>
+        <hr>
+      </div>
+      <div class="col-md 3">
+        <form action="{{url('delete/'.$task->id)}}" id="delete-form" method="POST">
+          @csrf
+          @method('DELETE')
+          <button form="delete-form">Delete</button>
+        </form>  
+      </div>
+    </div>
+    
+    
+    <!--task name-->
+    
 
-      </tr>
 
-      <tr id="desc">
-        <td><h5 style="color:gray">{{ $task->description }}</h5></td>
-        <td>
-          <form action="{{url('edit/'.$task->id)}}" method="GET">
-          <button type="submit">Edit</button></td>
-          </form>
-      </tr>
+    <!--description-->  
+    <div id="description">
+      <h5>{{ $task->description }}</h5>
+    </div>
 
-  </table>
+    <!--DELETE-->
+ 
+      
+    
+      
+    <!--EDIT-->
+    <div id="edit">
+      <form action="{{url('edit/'.$task->id)}}" method="GET">
+        <button type="submit">Edit</button>
+      </form>
+    </div>
   </div>
-
   @endforeach
 
 </x-layout>

@@ -22,8 +22,9 @@ use App\Http\Controllers\TaskController;
 /**
 * Display tasks
 */
-Route::redirect('/', '/tasks');
-Route::get('/tasks', [TaskController::class, 'show']);
+
+Route::get('/{slug?}', [TaskController::class, 'show']);
+
 
 
 /**
