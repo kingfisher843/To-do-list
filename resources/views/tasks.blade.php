@@ -6,55 +6,48 @@
   <!--NEW TASK BUTTON-->
 
   <form action="/tasks/new">
-    <input type="submit" value="New Task">
+    <button type="submit" >Add new Task</button>
   </form>
   <br>
+  <table class="table table-sm table-bordered">
+    <thead>
+      <tr>
+        <th>Active tasks</th>
+        <th>&nbsp;</th>
+      </tr>
+        
+    </thead> 
 
-  <!--SORTING TOOL-->
-
-
-  <!--LIST OF TASKS-->
-  <br/><br/>
-  @foreach ($tasks as $task)
-    <div class="row">
-      <div class="col-md 3">
-        <input type="checkbox" id="checkbox">
-      </div>
-      <div class="col-md 6">
-        <h3>{{ $task->name }}</h3>
-        <hr>
-      </div>
-      <div class="col-md 3">
-        <form action="{{url('delete/'.$task->id)}}" id="delete-form" method="POST">
-          @csrf
-          @method('DELETE')
-          <button form="delete-form">Delete</button>
-        </form>  
-      </div>
-    </div>
-    
-    
-    <!--task name-->
-    
-
-
-    <!--description-->  
-    <div id="description">
-      <h5>{{ $task->description }}</h5>
-    </div>
-
-    <!--DELETE-->
- 
-      
-    
-      
-    <!--EDIT-->
-    <div id="edit">
-      <form action="{{url('edit/'.$task->id)}}" method="GET">
-        <button type="submit">Edit</button>
-      </form>
-    </div>
-  </div>
-  @endforeach
-
+    <tbody>
+      <!--LIST OF TASKS-->
+      @foreach ($tasks as $task)
+        
+        <tr>
+          <td rowspan="2"><input type="checkbox" id="checkbox">
+          <!--TASK NAME-->  
+          <td><h3>  {{ $task->name }}</h3></td>
+          <!--DELETE-->
+          <td><h5> 
+            <form action="{{url('delete/'.$task->id)}}" id="delete-form" method="POST">
+              @csrf
+              @method('DELETE')
+              <button form="delete-form">Delete</button>
+            </form>  
+          </h5></td>
+        </tr>
+        <tr>
+          <!--EDIT-->
+            <!--description-->  
+          <td>
+            <h5>{{ $task->description }}</h5>
+          </td>
+          <td>
+            <form action="{{url('edit/'.$task->id)}}" method="GET">
+              <button type="submit">Edit</button>
+            </form>
+          </td>  
+        </tr>    
+      @endforeach
+    </tbody>
+  </table>
 </x-layout>
