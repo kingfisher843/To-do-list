@@ -3,51 +3,49 @@
 
 
 <x-layout>
+  <br>
   <!--NEW TASK BUTTON-->
-
-  <form action="/tasks/new">
-    <button type="submit" >Add new Task</button>
+  <form action="/tasks/new" class="text-center">
+    <button type="submit" class="col-md-1 btn btn-warning text-center rounded-pill">+</button>
   </form>
   <br>
-  <table class="table table-sm table-bordered">
-    <thead>
-      <tr>
-        <th>Active tasks</th>
-        <th>&nbsp;</th>
-      </tr>
-        
-    </thead> 
+
+   
 
     <tbody>
       <!--LIST OF TASKS-->
       @foreach ($tasks as $task)
-        
+      <table class="table border-left rounded border-success bg-white">
         <tr>
-          <td rowspan="2"><input type="checkbox" id="checkbox">
+          <!--CHECKBOX-->
+          <div class="form-check">
+            <td rowspan="2" class="col-md-1 text-center align-middle"><input type="checkbox" id="checkbox"></td>
+          </div>
           <!--TASK NAME-->  
-          <td><h3>  {{ $task->name }}</h3></td>
+          <td><h4>  {{ $task->name }}</h4></td>
           <!--DELETE-->
           <td><h5> 
-            <form action="{{url('delete/'.$task->id)}}" id="delete-form" method="POST">
+            <form action="{{url('delete/'.$task->id)}}" id="delete-form.{{$task->id}}" method="POST">
               @csrf
               @method('DELETE')
-              <button form="delete-form">Delete</button>
+              <button class="btn btn-danger" form="delete-form.{{$task->id}}">Delete</button>
             </form>  
           </h5></td>
         </tr>
         <tr>
-          <!--EDIT-->
-            <!--description-->  
+          <!--DESCRIPTION-->  
           <td>
-            <h5>{{ $task->description }}</h5>
+            <h6>{{ $task->description }}</h6>
           </td>
+          <!--EDIT-->
           <td>
             <form action="{{url('edit/'.$task->id)}}" method="GET">
-              <button type="submit">Edit</button>
+              <button class="btn btn-primary" type="submit">Edit</button>
             </form>
           </td>  
         </tr>    
+      </tbody>
+    </table>
       @endforeach
-    </tbody>
-  </table>
+
 </x-layout>

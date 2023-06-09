@@ -11,8 +11,8 @@
     <title> {{ $title ?? 'To-do' }} </title>
   </head>
 
-  <body>
-    <div class="container-fluid" id="logo">
+  <body class="bg-light">
+    <div class="container-fluid " id="logo">
       
     </div>  
     <div class="container" id="content">
