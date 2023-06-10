@@ -46,9 +46,8 @@ class TaskController extends Controller
     ]);
   }
 
-  public function patch($id, Request $request)
+  public function patch(Task $task, Request $request)
   {
-    $task = Task::findOrFail($id);
     $task->name = $request->input('name');    
     $task->description = $request->input('description');
     $task->save();

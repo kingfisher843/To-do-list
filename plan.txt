@@ -9,4 +9,3 @@ Where should i put this? (that's what he said!)
 1. tasks.blade.php in resources/views + route('/') in routes
 2. + 3. Storing in the mysql database created in laravel, handled by todoController.php in app/Http/Controller
 Displayed in the file from point 1.
-<link rel="stylesheet" href="{{URL::asset('css/style.css')}}" />

@@ -19,7 +19,9 @@
         <tr>
           <!--CHECKBOX-->
           <div class="form-check">
-            <td rowspan="2" class="col-md-1 text-center align-middle"><input type="checkbox" id="checkbox"></td>
+            <td rowspan="2" class="col-md-1 text-center align-middle">
+              <input type="checkbox" id="checkbox">
+            </td>
           </div>
           <!--TASK NAME-->  
           <td><h4>  {{ $task->name }}</h4></td>
@@ -28,7 +30,7 @@
             <form action="{{url('delete/'.$task->id)}}" id="delete-form.{{$task->id}}" method="POST">
               @csrf
               @method('DELETE')
-              <button class="btn btn-danger" form="delete-form.{{$task->id}}">Delete</button>
+              <button class="btn btn-danger" type="submit" form="delete-form.{{$task->id}}">Delete</button>
             </form>  
           </h5></td>
         </tr>
@@ -39,7 +41,7 @@
           </td>
           <!--EDIT-->
           <td>
-            <form action="{{url('edit/'.$task->id)}}" method="GET">
+            <form action="{{url('edit/'.$task->id)}}" method="GET" id="edit-form-{{$task->id}}">
               <button class="btn btn-primary" type="submit">Edit</button>
             </form>
           </td>  
