@@ -53,7 +53,16 @@ class TaskController extends Controller
     $task->save();
     return redirect('/');
   }
-
+  public function check(Task $task, Request $request)
+  {
+    if ($task->completed){
+      $task->completed = 0;
+    } else {
+      $task->completed = 1;
+    }
+    $task->save();
+    return redirect('/');
+  }
   public function destroy(Task $task)
   {   
     $task->delete();

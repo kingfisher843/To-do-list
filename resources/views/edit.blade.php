@@ -10,16 +10,19 @@
           @csrf  
           @method('PATCH')
               <label for="name" class="form-label">Task:</label><br>
-              <input type="text" id="name" class="form-control" value = "{{$task->name}}" required>
+              <input type="text" id="name" name="name" class="form-control" value = "{{$task->name}}" required>
               <br>
            
               <label for="description" class="form-label">Description (optional):</label><br>
-              <textarea name="description" id="description" class="form-control">{{$task->description}}</textarea>
+              <textarea name="description" id="description" name="name" class="form-control">{{$task->description}}</textarea>
               <br>
               <button class="col-md-1 btn btn-primary text-center rounded">Save</button>
               
         </form>
-    
+        <br>
+        <form method="GET" action="{{url('/')}}" onsubmit="return confirm ('Are you sure you want to discard changes?');">
+          <button class="col-md-1 btn btn-secondary text-center rounded">Discard</button>
+        </form>
       </div>
-    
+      
     </x-layout>

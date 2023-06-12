@@ -40,6 +40,7 @@ Route::post('/tasks/new', [TaskController::class, 'save']);
  */
 Route::get('/edit/{task}', [TaskController::class, 'edit']);
 Route::patch('/edit/{task}', [TaskController::class, 'patch']);
+Route::patch('/check/{task}', [TaskController::class, 'check']);
 /**
 * Delete task
 */
