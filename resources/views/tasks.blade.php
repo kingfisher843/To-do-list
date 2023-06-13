@@ -24,7 +24,7 @@
               @method('PATCH')
               <td rowspan="2" class="col-md-1 text-center align-middle">
                 <button class="btn btn-primary btn-square-md btn-sq-responsive" type="submit" id="checkbox" name="checkbox" aria-pressed="">
-                  {{$task->completed}}
+                  {{$task->completed ?? 0}}
                 </button>
               </td>
             </form>

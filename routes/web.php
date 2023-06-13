@@ -31,7 +31,7 @@ Route::post('/', [IndexController::class, 'login']);
 * Display tasks
 */
 
-Route::get('/tasks/{slug?}', [TaskController::class, 'show']);
+Route::get('/tasks', [TaskController::class, 'show']);
 
 /**
 * Add new task

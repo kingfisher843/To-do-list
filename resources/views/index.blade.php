@@ -7,10 +7,9 @@
             <br>
 
             <label for="password" class="form-label"><h5>Password:</h5></label>
-            <input type="text" name="password" id="password" class="form-control">
+            <input type="password" name="password" id="password" class="form-control">
             <br>
-            
-            <button class="col-md-1 btn btn-primary text-center rounded">Log in</button>
+            <button class="col-md-1 btn btn-warning text-center rounded">Log in</button>
             
       </form>
 

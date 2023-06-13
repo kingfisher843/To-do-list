@@ -28,7 +28,10 @@ class TaskController extends Controller
   */
   public function save(Request $request): RedirectResponse
   {
-    
+    $validated = $request->validate([
+      'name' => 'required|max:50',
+      'description' => 'max:100'
+    ]);
     $task = new Task;
     $task->name = $request->input('name');    
     $task->description = $request->input('description');
