@@ -20,7 +20,7 @@
               
         </form>
         <br>
-        <form method="GET" action="{{url('/')}}" onsubmit="return confirm ('Are you sure you want to discard changes?');">
+        <form method="GET" action="{{url('/tasks')}}" onsubmit="return confirm ('Are you sure you want to discard changes?');">
           <button class="col-md-1 btn btn-secondary text-center rounded">Discard</button>
         </form>
       </div>

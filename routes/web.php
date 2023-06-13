@@ -18,19 +18,24 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\IndexController;
 
+
+
+/**
+ * Index page (Log-in)
+ */
+Route::get('/', [IndexController::class, 'show']);
+Route::post('/', [IndexController::class, 'login']);
 /**
 * Display tasks
 */
 
-Route::get('/{slug?}', [TaskController::class, 'show']);
-
-
+Route::get('/tasks/{slug?}', [TaskController::class, 'show']);
 
 /**
 * Add new task
 */
-
 
 Route::get('/tasks/new', [TaskController::class, 'create']);
 Route::post('/tasks/new', [TaskController::class, 'save']);
@@ -40,6 +45,9 @@ Route::post('/tasks/new', [TaskController::class, 'save']);
  */
 Route::get('/edit/{task}', [TaskController::class, 'edit']);
 Route::patch('/edit/{task}', [TaskController::class, 'patch']);
+/**
+ * Checkbox functionality
+ */
 Route::patch('/check/{task}', [TaskController::class, 'check']);
 /**
 * Delete task

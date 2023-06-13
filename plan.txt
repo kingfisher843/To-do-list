@@ -5,7 +5,10 @@ To-do:
 4. Filter tool can switch between different sorting of task (Sort by: the latest, the oldest)
 5. Display encouraging and appreciating message when the task is finished
 
-Where should i put this? (that's what he said!)
-1. tasks.blade.php in resources/views + route('/') in routes
-2. + 3. Storing in the mysql database created in laravel, handled by todoController.php in app/Http/Controller
-Displayed in the file from point 1.
+log-in page, user functionality etc.
+
+1. Login/Sign up page
+2. Front-end validation (format of the input values)
+3. Back-end validation (preventing attacks on database, password hashing etc.)
+4. Individual task table for every user
+5. Overall security

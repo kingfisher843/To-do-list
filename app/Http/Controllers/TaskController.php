@@ -24,7 +24,7 @@ class TaskController extends Controller
 
   /**
   * @param Request $request
-  * @return redirect ('/') (after handling the request)
+  * @return redirect ('/tasks') (after handling the request)
   */
   public function save(Request $request): RedirectResponse
   {
@@ -35,7 +35,7 @@ class TaskController extends Controller
     $task->touch();
    
 
-    return redirect('/');
+    return redirect('/tasks');
 
   }
   
@@ -51,7 +51,7 @@ class TaskController extends Controller
     $task->name = $request->input('name');    
     $task->description = $request->input('description');
     $task->save();
-    return redirect('/');
+    return redirect('/tasks');
   }
   public function check(Task $task, Request $request)
   {
@@ -61,11 +61,11 @@ class TaskController extends Controller
       $task->completed = 1;
     }
     $task->save();
-    return redirect('/');
+    return redirect('/tasks');
   }
   public function destroy(Task $task)
   {   
     $task->delete();
-    return redirect('/')->with('success', 'Task deleted.');
+    return redirect('/tasks')->with('success', 'Task deleted.');
   }
 }

@@ -13,8 +13,11 @@
 
   <body class="bg-light">
     <div class="container-fluid " id="logo">
-      
+      <h1>Task Me Anything</h1>
     </div>  
+    <nav class="nav bg-warning">
+      
+    </nav>
     <div class="container" id="content">
         {{ $slot }}
     </div>
