@@ -18,25 +18,42 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\TaskController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionController;
+
+
+/**
+ * Welcome page - for now it will redirect to /register uri
+ */
+Route::redirect('/', '/register');
+
 
 
 
 /**
- * Auth
+ * Register
  */
-Route::get('/', [UserController::class, 'create']);
-Route::post('/', [UserController::class, 'save']);
+Route::get('/register', [RegisterController::class, 'create']);
+Route::post('/register', [RegisterController::class, 'save']);
+
+/**
+ * Login & logout (Session)
+ */
+Route::get('/login', [SessionController::class, 'create']);
+Route::post('/login', [SessionController::class, 'store']);
+Route::get('/logout', [SessionController::class, 'destroy']);
+
+
+
+
 /**
 * Display tasks
 */
-
 Route::get('/tasks', [TaskController::class, 'show']);
 
 /**
 * Add new task
 */
-
 Route::get('/tasks/new', [TaskController::class, 'create']);
 Route::post('/tasks/new', [TaskController::class, 'save']);
 
@@ -45,10 +62,12 @@ Route::post('/tasks/new', [TaskController::class, 'save']);
  */
 Route::get('/edit/{task}', [TaskController::class, 'edit']);
 Route::patch('/edit/{task}', [TaskController::class, 'patch']);
+
 /**
  * Checkbox functionality
  */
 Route::patch('/check/{task}', [TaskController::class, 'check']);
+
 /**
 * Delete task
 */

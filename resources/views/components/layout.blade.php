@@ -14,6 +14,7 @@
   <body class="bg-light">
     <div class="container-fluid " id="logo">
       <h1>Task Me Anything</h1>
+      <h5>simple manager for all of your to-do's!</h5>
     </div>  
     <nav class="nav bg-warning">
       
