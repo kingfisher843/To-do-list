@@ -17,9 +17,19 @@
                     <input type="password" name="password" class="form-control" placeholder="password (8-20 characters)">
                     <br>
                     <p class="text-center"><button class="btn btn-warning text-center rounded">Create an account</button></p>
+                    
 
                     <a href="/login">Already registered? Sign in to catch up with your progress!</a>
                 </form>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </td>
         </tr>    
     </table>

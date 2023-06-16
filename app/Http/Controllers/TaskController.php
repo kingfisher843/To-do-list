@@ -7,14 +7,19 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
   
-  public function show(): View
+  public function show()
   {
+    if (Auth::check()) {
    $tasks = Task::orderBy('created_at', "asc")->get();
     return view('tasks', ['tasks' => $tasks]);
+    } else {
+      return redirect('/');
+    }
   }
 
   public function create(Request $request): View
@@ -32,8 +37,10 @@ class TaskController extends Controller
       'name' => 'required|max:50',
       'description' => 'max:100'
     ]);
+    $user = Auth::user();
     $task = new Task;
-    $task->name = $request->input('name');    
+    $task->name = $request->input('name'); 
+    $task->user_id = $user->id;   
     $task->description = $request->input('description');
     $task->touch();
    

@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -28,7 +29,7 @@ class RegisterController extends Controller
             'password' => bcrypt($request->password)
         ];
           $user = User::create($userData);
-          auth()->login($user);
+          Auth::login($user);
            return redirect('/tasks');
            
     }

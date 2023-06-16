@@ -11,15 +11,37 @@
     <title> {{ $title ?? 'To-do' }} </title>
   </head>
 
-  <body class="bg-light">
-    <div class="container-fluid " id="logo">
-      <h1>Task Me Anything</h1>
-      <h5>simple manager for all of your to-do's!</h5>
-    </div>  
-    <nav class="nav bg-warning">
-      
-    </nav>
-    <div class="container" id="content">
+  <body>
+    <div class="container bg-white" id="content">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#"><h3>TaskMe</h3></a>
+      <div class="collapse navbar-collapse">
+      <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="navbar-brand" href="#">Simple App for all your tasks!</a><br>
+      </li>
+    </div>
+     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+          @if( auth()->check() )
+              <li class="nav-item">
+                  <a class="nav-link font-weight-bold" href="#">Hi {{ auth()->user()->username }}!</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/logout">Log Out</a>
+              </li>
+          @else
+              <li class="nav-item">
+                  <a class="nav-link" href="/login">Log In</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/register">Register</a>
+              </li>
+          @endif
+      </ul>
+ 
+    </nav>  
+   
         {{ $slot }}
     </div>
     
