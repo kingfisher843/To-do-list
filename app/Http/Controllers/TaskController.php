@@ -15,10 +15,13 @@ class TaskController extends Controller
   public function show()
   {
     if (Auth::check()) {
-   $tasks = Task::orderBy('created_at', "asc")->get();
-    return view('tasks', ['tasks' => $tasks]);
+      $user = Auth::user();
+      $tasks = Task::where('user_id', $user->id)->get();
+      return view('tasks', ['tasks' => $tasks]);
     } else {
-      return redirect('/');
+      return view('login', [
+        "message" => "Please log in first!"
+      ]);
     }
   }
 
