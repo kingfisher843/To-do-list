@@ -18,7 +18,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
       <a class="navbar-brand" href="#">
-        <h3>Task<span class="text-success">Me<button class="btn check-me"><i class="bi-check-square-fill"></i></button></span></h3></a>
+        <h3>Task<span class="text-success">Me<button class="btn check-me"><i class="bi-square"></i></button></span></h3></a>
     
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,7 +71,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>$('.check-me').click(function() {
-      $(this).find('i').toggleClass('bi-x-square bi-check-square-fill');
+      $(this).find('i').toggleClass('bi-square bi-check-square-fill');
   });
     </script>
   </body>
