@@ -2,7 +2,7 @@
  <!--Formating a list of errors-->
  <div class="error alert">
    
-   <strong>Something went wrong. See below for list of errors!</strong>
+   <strong>Something went wrong. Here's propably why:</strong>
 
    <ul>
 

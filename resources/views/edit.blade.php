@@ -10,7 +10,7 @@
           @csrf  
           @method('PATCH')
               <label for="name" class="form-label">Task:</label><br>
-              <input type="text" id="name" name="name" class="form-control" value = "{{$task->name}}" required>
+              <input type="text" id="name" name="name" class="form-control" value="{{$task->name}}" required>
               <br>
            
               <label for="description" class="form-label">Description (optional):</label><br>

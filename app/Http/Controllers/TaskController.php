@@ -43,7 +43,7 @@ class TaskController extends Controller
     if (Auth::check()) {
     $validated = $request->validate([
       'name' => 'required|max:30',
-      'description' => 'nullable|max:100',
+      'description' => 'nullable|max:200',
       'completed' => 'numeric|min:0|max:1|nullable'
     ]);
     $user = Auth::user();
@@ -73,7 +73,7 @@ class TaskController extends Controller
     if (Auth::check()) {
     $validated = $request->validate([
       'name' => 'required|max:30',
-      'description' => 'max:100',
+      'description' => 'max:200',
       'completed' => 'numeric|min:0|max:1|nullable'
     ]);
     $task->name = $request->input('name');    

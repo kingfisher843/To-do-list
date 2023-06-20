@@ -19,21 +19,25 @@
       @if ($task->completed == "1")
         @php
           $checkboxClass = "bi-check-square-fill";
+          $checkboxBg = "bg-secondary";
+          $checkboxText = "text-muted";
         @endphp
       @else 
         @php
           $checkboxClass = "bi-square";
+          $checkboxBg = "bg-primary";
+          $checkboxText = "text-dark";
         @endphp
       @endif
 
-      <table class="table border-left rounded border-success bg-white">
+      <table class="table border-left rounded bg-white">
         <tr>
           <!--CHECKBOX-->
           <div class="form-check">
             <form action="{{url('check/'.$task->id)}}" method="POST">
               @csrf
               @method('PATCH')
-              <td rowspan="2" class="col-2 col-md-1 text-center align-middle bg-primary">
+              <td rowspan="2" class="col-2 col-md-1 text-center align-middle {{ $checkboxBg ?? 'bg-primary' }}">
                
                 <button class="btn check-me btn-square-md btn-sq-responsive" type="submit" id="checkbox" name="checkbox">
                   <h2><i class="{{ $checkboxClass ?? 'bi-square' }}"></i></h2>
@@ -44,7 +48,7 @@
         
         
           <!--TASK NAME-->  
-          <td class="col-xs-6 col-md-8"><h4>  {{ $task->name }}</h4></td>
+          <td class="col-xs-6 col-md-8"><h4 class="{{ $checkboxText ?? 'text-dark' }}"> {{ $task->name }}</h4></td>
           <!--EDIT-->
           <td>
             <form action="{{url('edit/'.$task->id)}}" method="GET" id="edit-form-{{$task->id}}">
