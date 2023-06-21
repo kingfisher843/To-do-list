@@ -9,8 +9,22 @@
     <button type="submit" class="col-2 col-md-1 btn btn-warning text-center rounded-pill">+</button>
   </form>
   <br>
-   
-
+  Show tasks:<br>
+  <form action="/tasks" method="GET">
+    <div class="btn-group" role="group">
+      <button type="submit" class="btn btn-secondary" name="filter_var" value="all">All</button>
+      <button type="sumbit" class="btn btn-secondary" name="filter_var" value="active">Active</button>
+      <button type="submit" class="btn btn-secondary" name="filter_var" value="completed">Completed</button>
+    </div>
+    <br><br>
+    Sorted by:<br>
+    <div class="btn-group" role="group">
+      <button type="submit" class="btn btn-secondary" name="sorter_var" value="latest">latest</button>
+      <button type="submit" class="btn btn-secondary" name="sorter_var" value="oldest">oldest</button>
+      <button type="submit" class="btn btn-secondary" name="sorter_var" value="alphabetically">alphabetically</button>
+    </div>
+  </form>
+<br><br>
     <tbody>
       <!--LIST OF TASKS-->
       @foreach ($tasks as $task)
@@ -30,7 +44,7 @@
         @endphp
       @endif
 
-      <table class="table border-left rounded bg-white">
+      <table class="table rounded bg-white">
         <tr>
           <!--CHECKBOX-->
           <div class="form-check">
@@ -63,15 +77,14 @@
             <h6 class="text-muted">{{ $task->description }}</h6>
           </td>
           <!--DELETE-->
-          <td class="text-center align-middle"><h5> 
-            <form action="{{url('delete/'.$task->id)}}" id="delete-form.{{$task->id}}" method="POST">
-              @csrf
-              @method('DELETE')
-              <button class="btn btn-danger w-100" type="submit" form="delete-form.{{$task->id}}"><i class="bi bi-trash3"></i></button>
-            </form>  
-          </h5></td>
-        </tr>    
-      </tbody>
+        <td class="text-center align-middle">
+          <form action="{{url('delete/'.$task->id)}}" id="delete-form.{{$task->id}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger w-100" type="submit" form="delete-form.{{$task->id}}"><i class="bi bi-trash3"></i></button>
+          </form>
+        </td>
+      </tr>    
     </table>
-      @endforeach
+  @endforeach
 </x-layout>

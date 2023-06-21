@@ -45,6 +45,7 @@ Route::get('/logout', [SessionController::class, 'destroy']);
 * Display tasks
 */
 Route::get('/tasks', [TaskController::class, 'show']);
+Route::post('/tasks', [TaskController::class, 'sort']);
 
 /**
 * Add new task

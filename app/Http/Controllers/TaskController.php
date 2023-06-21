@@ -8,15 +8,33 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Filter;
 
 class TaskController extends Controller
 {
   
-  public function show()
+  public function show(Request $request)
   {
     if (Auth::check()) {
       $user = Auth::user();
-      $tasks = Task::where('user_id', $user->id)->orderBy('created_at', 'asc')->get();
+      $tasks = Task::where("user_id", $user->id);
+
+      if ($sorter_var = $request->input('sorter_var')){
+        if ($sorter_var == "latest"){
+          $tasks = $tasks->orderBy("created_at", "desc");
+        } elseif ($sorter_var == "alphabetically"){
+          $tasks = $tasks->orderBy("name", "asc");
+      }
+      } 
+      if ($filter_var = $request->input('filter_var')){
+        if ($filter_var == "active"){
+          $tasks = $tasks->where("completed", "0");
+        } elseif ($filter_var == "completed"){
+          $tasks = $tasks->where("completed", "1");
+        }
+      }
+      $tasks = $tasks->get();
+      
       return view('tasks', [
         'tasks' => $tasks
         ]);
@@ -51,7 +69,8 @@ class TaskController extends Controller
     $task->name = $request->input('name'); 
     $task->user_id = $user->id;   
     $task->description = $request->input('description');
-    $task->touch();
+    $task->completed = "0";
+    $task->save();
    
 
     return redirect('/tasks');
