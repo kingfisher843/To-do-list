@@ -1,0 +1,25 @@
+services:
+  app:
+    image: todo
+    command: sh -c "yarn install && yarn run dev"
+    ports:
+      - 127.0.0.1:3000:3000
+    working_dir: /to-do
+    volumes:
+      - ./:/to-do
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: "K1Lp_a0$$t"
+      MYSQL_DB: laravel
+
+  mysql:
+    image: mysql:8.0.33
+    volumes:
+      - todo-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: todos
+
+volumes:
+  todo-mysql-data:

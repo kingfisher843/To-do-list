@@ -54,6 +54,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Contact</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link font-weight-bold" href="#"><i class="bi bi-gear-fill"></i></a>
+          </li>
         </ul>
       </div>
     </nav>  
