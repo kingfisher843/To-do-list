@@ -62,28 +62,29 @@
         
         
           <!--TASK NAME-->  
-          <td class="col-xs-6 col-md-8"><h4 class="{{ $checkboxText ?? 'text-dark' }}"> {{ $task->name }}</h4></td>
+          <td class="col-8 col-md-9"><h4 class="{{ $checkboxText ?? 'text-dark' }}"> {{ $task->name }}</h4></td>
           <!--EDIT-->
-          <td>
+          <td rowspan="2" class="col-1 text-center align-middle">
             <form action="{{url('edit/'.$task->id)}}" method="GET" id="edit-form-{{$task->id}}">
-              <button class="btn btn-dark w-100" type="submit"><i class="bi bi-pencil-square"></i></button>
+              <button class="btn btn-dark w-100 d-inline" type="submit"><i class="bi bi-pencil-square"></i></button>
+            </form>  
+          </td>
+          <!--DELETE-->
+          <td rowspan="2" class="col-1 text-center align-middle">
+            <form class="d-inline" action="{{url('delete/'.$task->id)}}" id="delete-form.{{$task->id}}" method="POST">
+              @csrf
+              @method('DELETE')
+              <button class="btn btn-danger w-100 d-inline" type="submit" form="delete-form.{{$task->id}}"><i class="bi bi-trash3"></i></button>
             </form>
-          </td>  
-          
+          </td>
+        </td>
         </tr>
         <tr>
           <!--DESCRIPTION-->  
           <td>
             <h6 class="text-muted">{{ $task->description }}</h6>
           </td>
-          <!--DELETE-->
-        <td class="text-center align-middle">
-          <form action="{{url('delete/'.$task->id)}}" id="delete-form.{{$task->id}}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button class="btn btn-danger w-100" type="submit" form="delete-form.{{$task->id}}"><i class="bi bi-trash3"></i></button>
-          </form>
-        </td>
+         
       </tr>    
     </table>
   @endforeach

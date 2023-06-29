@@ -1,6 +1,6 @@
 FROM php:8.2.7-fpm-alpine
 
-RUN docker-php-ext-install \ 
+RUN apk add \ 
     pdo \ 
     pdo_mysql \
     sockets \
