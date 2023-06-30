@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 use App\Repositories\User\UserInterface as UserInterface;
 class UserController extends Controller
 {
-    function __construct(UserInterface $user)
-    {
-        $this->user = $user;
+    public function __construct(protected UserRepository $users)
+    {}
+
+    //shows profile
+    public function show($id){
+        $user = $this->users->find($id);
+        return view('user.profile', ['user' => $user]);
+        
     }
 }

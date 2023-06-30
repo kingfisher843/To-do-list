@@ -8,9 +8,9 @@ interface TaskInterface {
 
     public function find($id);
 
-    public function delete($id);
-
     public function create(array $taskData);
 
     public function update($id, array $newTaskData);
+
+    public function delete($id);
 }

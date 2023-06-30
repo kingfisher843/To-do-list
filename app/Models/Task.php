@@ -13,4 +13,24 @@ class Task extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public  function getAll()
+    {
+        return static::all();
+    }
+
+    public function findTask()
+    {
+        return static::find($id);
+    }
+
+    public function deleteTask()
+    {
+        return static::find($id)->delete();
+    }
+
+    public function store()
+    {
+        
+    }
 }

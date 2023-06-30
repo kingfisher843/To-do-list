@@ -12,7 +12,9 @@ use App\Models\Filter;
 
 class TaskController extends Controller
 {
-  
+  public function __construct(protected TaskRepository $tasks){
+
+  }
   public function show(Request $request)
   {
     if (Auth::check()) {

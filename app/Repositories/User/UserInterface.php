@@ -8,5 +8,9 @@ interface UserInterface {
 
     public function find($id);
 
+    public function store(array $userData);
+
+    public function update($id, array $newUserData);
+
     public function delete($id);
 }

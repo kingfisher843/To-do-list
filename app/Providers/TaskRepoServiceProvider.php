@@ -4,14 +4,14 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class UserRepoServiceProvider extends ServiceProvider
+class TaskRepoServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
      */
     public function register(): void
     {
-        $this->app->bind('App\Repositories\User\UserInterface', 'App\Repositories\User\UserRepository');
+        $this->app->bind('App\Repositories\Task\TaskInterface', 'App\Repositories\Task\TaskRepository');
     }
 
     /**
