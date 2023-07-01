@@ -14,9 +14,34 @@ class TaskRepository implements TaskInterface
         $this->task = $task;
     }
 
-    public function getAll(): Collection
+    public function show(): Collection
     {
-        return $this->task->getAll();
+        return $this->task->show();
+    }
+
+    public function completed(): Collection
+    {
+        return $this->task->completed();
+    }
+
+    public function incompleted(): Collection
+    {
+        return $this->task->incompleted();
+    }
+
+    public function latest(Collection $tasks_collected): Collection
+    {
+        return $this->task->latest($tasks_collected);
+    }
+
+    public function oldest(Collection $tasks_collected): Collection
+    {
+        return $this->task->oldest($tasks_collected);
+    }
+
+    public function alphabetically(Collection $tasks_collected): Collection
+    {
+        return $this->task->alphabetically($tasks_collected);
     }
 
     public function find($id): Task

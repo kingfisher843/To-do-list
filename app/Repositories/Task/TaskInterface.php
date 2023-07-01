@@ -4,7 +4,7 @@ namespace App\Repostories\Task;
 
 interface TaskInterface {
 
-    public function getAll();
+    public function show(Request $request);
 
     public function find($id);
 
