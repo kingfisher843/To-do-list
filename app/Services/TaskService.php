@@ -1,80 +1,65 @@
 <?php
 
 namespace App\Services;
-
+use App\Repositories\TaskRepository;
+use App\Repositories\UserRepository;
 
 class TaskService
 {
-    public function __construct(protected TaskRepository $tasks){
+    public function __construct(protected TaskRepository $task){
   
     }
     public function show(Request $request, User $user)
     {
-        $tasks = Task::where("user_id", $user->id);
-  
+      $user_tasks = $this->task->belongsTo($user);
+
         if ($sorter_var = $request->input('sorter_var')){
           if ($sorter_var == "latest"){
-            $tasks = $tasks->orderBy("created_at", "desc");
+            $user_tasks = $user_tasks->orderBy("created_at", "desc");
           } elseif ($sorter_var == "alphabetically"){
-            $tasks = $tasks->orderBy("name", "asc");
+            $user_tasks = $user_tasks->orderBy("name", "asc");
         }
         } 
         if ($filter_var = $request->input('filter_var')){
           if ($filter_var == "active"){
-            $tasks = $tasks->where("completed", "0");
+            $user_tasks = $user_tasks->where("completed", "0");
           } elseif ($filter_var == "completed"){
-            $tasks = $tasks->where("completed", "1");
+            $user_tasks = $user_tasks->where("completed", "1");
           }
         }
-        $tasks = $tasks->get();
-        
-        return $tasks;
+        return $user_tasks;
     }
 
     public function find($id)
     {
-        $task = Task::findOrFail($id);
-
-        return $task;
+        return $this->task->find($id);
     }
   
     /**
     * @param Request $request
-    * @return redirect ('/tasks') (after handling the request)
+    * @return Task $newTask
     */
-    public function create(Request $request, User $user): RedirectResponse
+    public function create(Request $request)
     {
-      if (Auth::check()) {
-      $validated = $request->validate([
-        'name' => 'required|max:30',
-        'description' => 'nullable|max:200',
-        'completed' => 'numeric|min:0|max:1|nullable'
-      ]);
-
-      $task = new Task;
+      $taskData = $request->all();
+      return $this->task;
+    }
+    
+    public function update($id, array $newTaskData): View
+    {
+      $task = $this->tasks->find($id);
       $task->name = $request->input('name'); 
       $task->user_id = $user->id;   
       $task->description = $request->input('description');
       $task->completed = "0";
       $task->save();
-     
-  
-      return redirect('/tasks');
-  
-    } else {
-      return redirect('/')->with('message', 'Please log in first!');
-    }
-  }
-    
-    public function update($id, array $newTaskData): View
-    {
-        $task = Task::findOrFail($id);
-        $task->update($newTaskData);
         return $task;
     }
 
-    public function check(Task $task)
+    public function check($id)
     {
+      $task = $this->tasks->find($id);
+
       if ($task->completed){
         $task->completed = 0;
       } else {
@@ -83,8 +68,9 @@ class TaskService
       $task->save();
       return $task;
     }
-    public function destroy(Task $task)
-    {   
+    public function destroy($id)
+    {  
+      $task = $this->tasks->find($id);
       $task->delete();
     }
   }

@@ -15,7 +15,7 @@ class UserRepository implements UserInterface
 
     public function getAll(): Collection
     {
-        return $this->user->getAll();
+        return $this->user->all();
     }
 
     public function find($id): User

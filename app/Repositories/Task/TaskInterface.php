@@ -4,11 +4,11 @@ namespace App\Repostories\Task;
 
 interface TaskInterface {
 
-    public function show(Request $request);
+    public function getAll();
 
     public function find($id);
 
-    public function create(array $taskData);
+    public function store(array $taskData);
 
     public function update($id, array $newTaskData);
 

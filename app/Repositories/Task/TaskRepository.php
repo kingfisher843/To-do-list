@@ -14,34 +14,14 @@ class TaskRepository implements TaskInterface
         $this->task = $task;
     }
 
-    public function show(): Collection
+    public function getAll(): Collection
     {
-        return $this->task->show();
+        return $this->task->all();
     }
 
-    public function completed(): Collection
+    public function belongsTo($user): Collection
     {
-        return $this->task->completed();
-    }
-
-    public function incompleted(): Collection
-    {
-        return $this->task->incompleted();
-    }
-
-    public function latest(Collection $tasks_collected): Collection
-    {
-        return $this->task->latest($tasks_collected);
-    }
-
-    public function oldest(Collection $tasks_collected): Collection
-    {
-        return $this->task->oldest($tasks_collected);
-    }
-
-    public function alphabetically(Collection $tasks_collected): Collection
-    {
-        return $this->task->alphabetically($tasks_collected);
+        return $this->task->where('user_id', $user->id)->get();
     }
 
     public function find($id): Task
@@ -49,14 +29,14 @@ class TaskRepository implements TaskInterface
         return $this->task->find($id);
     }
 
-    public function store(array $taskData): Task
+    public function create(array $taskData): Task
     {
-        return $this->task->store($taskData);
+        return $this->task->create($taskData);
     }
 
     public function update($id, array $newTaskData): Task
     {
-        return $this->task->update($newTaskData);
+        return $this->task->find($id)->update($newTaskData);
     }
 
     public function delete($id)
