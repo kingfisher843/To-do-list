@@ -25,12 +25,12 @@ class UserRepository implements UserInterface
 
     public function store($userData)
     {
-        return $this->user->store($userData);
+       return $this->user->create($userData);
     }
 
     public function update($id, array $newUserData)
     {
-        return $this->task->update($newUserData);
+        return $this->user->find($id)->update($newUserData);
     }
 
     public function delete($id)

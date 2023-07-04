@@ -14,23 +14,22 @@ use App\Services\TaskService;
 
 class TaskController extends Controller
 {
-  public function __construct(protected TaskRepository $task, TaskService $taskService){
+  public function __construct(protected TaskService $taskService){
 
   }
   public function show(Request $request, User $user)
   {
     if (Auth::check()) {
-     $tasks = $taskService->show();
+     $tasks = $this->taskService->show($request, $user);
       
       return view('tasks', [
         'tasks' => $tasks
         ]);
 
-    } else {
+    }
       return view('login', [
         "message" => "Please log in first!"
       ]);
-    }
   }
 
   public function create(Request $request): View
@@ -48,38 +47,29 @@ class TaskController extends Controller
   {
     if (Auth::check()) {
   
-    $task->store($request);
+    $this->taskService->store($request);
    
     return redirect('/tasks');
 
-  } else {
-    return redirect('/')->with('message', 'Please log in first!');
   }
+    return redirect('/')->with('message', 'Please log in first!');
+  
 }
   
   public function edit($id): View
   {
+    $task = $this->taskService->find($id);
     return view('edit', [
-      'task' => Task::findOrFail($id)
+      'task' => $task
     ]);
   }
 
-  public function patch(Task $task, Request $request)
+  public function update(Task $task, Request $request)
   {
-    if (Auth::check()) {
-    $validated = $request->validate([
-      'name' => 'required|max:30',
-      'description' => 'max:200',
-      'completed' => 'numeric|min:0|max:1|nullable'
-    ]);
-    $task->name = $request->input('name');    
-    $task->description = $request->input('description');
-    $task->save();
+    $this->taskService->update($request);
     return redirect('/tasks');
-  } else {
+  }
 
-  }
-  }
   public function check(Task $task, Request $request)
   {
     if ($task->completed){
@@ -92,7 +82,7 @@ class TaskController extends Controller
   }
   public function destroy(Task $task)
   {   
-    $task->delete();
+    $this->taskService->delete();
     return redirect('/tasks')->with('success', 'Task deleted.');
   }
 }

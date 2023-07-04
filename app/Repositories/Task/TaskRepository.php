@@ -1,40 +1,42 @@
 <?php
 
-namespace App\Repositories\User;
+namespace App\Repositories\Task;
 
-use App\Repositories\TaskInterface as TaskInterface;
-use App\Task;
+use App\Repositories\Task\TaskInterface;
+
 
 class TaskRepository implements TaskInterface
 {
     public $task;
 
-    public function __construct(Task $task)
+    public function __construct($task)
     {
         $this->task = $task;
     }
 
-    public function getAll(): Collection
+    public function getAll()
     {
         return $this->task->all();
     }
 
-    public function belongsTo($user): Collection
+    public function userTasks($user_id)
     {
-        return $this->task->where('user_id', $user->id)->get();
+        return $this->task->where('user_id', $user_id);
     }
 
-    public function find($id): Task
+    public function find($id)
     {
         return $this->task->find($id);
     }
 
-    public function create(array $taskData): Task
+    public function store(array $taskData)
     {
-        return $this->task->create($taskData);
+        $this->task->create($taskData);
+        //$this->task->completed = 0;
+        return $this->task;
     }
 
-    public function update($id, array $newTaskData): Task
+    public function update($id, array $newTaskData)
     {
         return $this->task->find($id)->update($newTaskData);
     }

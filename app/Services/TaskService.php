@@ -1,19 +1,19 @@
 <?php
 
 namespace App\Services;
-use App\Repositories\TaskRepository;
-use App\Repositories\UserRepository;
+use App\Repositories\Task\TaskRepository;
+
 
 class TaskService
 {
-    public function __construct(protected TaskRepository $task){
+    public function __construct(protected TaskRepository $taskRepository){
   
     }
-    public function show(Request $request, User $user)
+    public function show($request = "0", $user)
     {
-      $user_tasks = $this->task->belongsTo($user);
+      $user_tasks = $this->taskRepository->userTasks($user->id);
 
-        if ($sorter_var = $request->input('sorter_var')){
+      /*  if ($sorter_var = $request->input('sorter_var')){
           if ($sorter_var == "latest"){
             $user_tasks = $user_tasks->orderBy("created_at", "desc");
           } elseif ($sorter_var == "alphabetically"){
@@ -26,13 +26,13 @@ class TaskService
           } elseif ($filter_var == "completed"){
             $user_tasks = $user_tasks->where("completed", "1");
           }
-        }
+        }*/
         return $user_tasks;
     }
 
     public function find($id)
     {
-        return $this->task->find($id);
+        return $this->taskRepository->find($id);
     }
   
     /**
@@ -41,24 +41,18 @@ class TaskService
     */
     public function create(Request $request)
     {
-      $taskData = $request->all();
-      return $this->task;
+      return $this->taskRepository->create($taskData);
     }
     
-    public function update($id, array $newTaskData): View
+    public function update($id, array $newTaskData)
     {
-      $task = $this->tasks->find($id);
-      $task->name = $request->input('name'); 
-      $task->user_id = $user->id;   
-      $task->description = $request->input('description');
-      $task->completed = "0";
-      $task->save();
+      $task = $this->taskRepository->update($id);
         return $task;
     }
 
     public function check($id)
     {
-      $task = $this->tasks->find($id);
+      $task = $this->taskRepository->find($id);
 
       if ($task->completed){
         $task->completed = 0;
@@ -70,7 +64,6 @@ class TaskService
     }
     public function destroy($id)
     {  
-      $task = $this->tasks->find($id);
       $task->delete();
     }
   }

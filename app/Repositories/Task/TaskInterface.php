@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Repostories\Task;
+namespace App\Repositories\Task;
 
 interface TaskInterface {
 
     public function getAll();
+
+    public function userTasks($user_id);
 
     public function find($id);
 
