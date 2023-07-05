@@ -51,13 +51,13 @@ Route::post('/tasks', [TaskController::class, 'sort']);
 * Add new task
 */
 Route::get('/tasks/new', [TaskController::class, 'create']);
-Route::post('/tasks/new', [TaskController::class, 'save']);
+Route::post('/tasks/new', [TaskController::class, 'store']);
 
 /**
  * Edit task
  */
 Route::get('/edit/{task}', [TaskController::class, 'edit']);
-Route::patch('/edit/{task}', [TaskController::class, 'patch']);
+Route::patch('/edit/{task}', [TaskController::class, 'update']);
 
 /**
  * Checkbox functionality

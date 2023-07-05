@@ -14,10 +14,6 @@ class TaskRepoServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind('App\Repositories\Task\TaskInterface', 'App\Repositories\Task\TaskRepository');
-
-        $this->app->bind(TaskRepository::class, function (Application $app) {
-            return new TaskRepository($app->make(TaskService::class));
-        });
     }
 
     /**

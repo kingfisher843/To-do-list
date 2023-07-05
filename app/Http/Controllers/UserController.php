@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Repositories\User\UserInterface as UserInterface;
+use App\Repositories\User\UserService;
 class UserController extends Controller
 {
-    public function __construct(protected UserRepository $users)
+    public function __construct(protected UserService $userService)
     {}
 
     //shows profile
-    public function show($id){
-        $user = $this->users->find($id);
+    public function show($id)
+    {
+        $user = $this->userService->find($id);
         return view('user.profile', ['user' => $user]);
         
     }

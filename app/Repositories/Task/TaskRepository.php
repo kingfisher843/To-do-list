@@ -3,25 +3,22 @@
 namespace App\Repositories\Task;
 
 use App\Repositories\Task\TaskInterface;
+use App\Models\Task;
 
 
 class TaskRepository implements TaskInterface
 {
-    public $task;
+    protected $task;
 
-    public function __construct($task)
+    public function __construct(Task $task)
     {
         $this->task = $task;
     }
 
     public function getAll()
     {
-        return $this->task->all();
-    }
-
-    public function userTasks($user_id)
-    {
-        return $this->task->where('user_id', $user_id);
+        return $this->task
+        ->get();
     }
 
     public function find($id)
@@ -31,18 +28,22 @@ class TaskRepository implements TaskInterface
 
     public function store(array $taskData)
     {
-        $this->task->create($taskData);
-        //$this->task->completed = 0;
-        return $this->task;
+        $newTask = $this->task->create($taskData);
+        return $newTask;
     }
 
-    public function update($id, array $newTaskData)
+    public function update($id, array $newTaskData, $user)
     {
-        return $this->task->find($id)->update($newTaskData);
+        $task = $this->task->find($id);
+        $task->name = $newTaskData["name"];
+        $task->description = $newTaskData["description"];
+        $task->user_id = $user->id;
+        $task->save();
+        return $task;
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        return $this->task->delete($id);
+        return $this->task->find($id)->delete();
     }
 }

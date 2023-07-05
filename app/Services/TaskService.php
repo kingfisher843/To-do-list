@@ -2,52 +2,58 @@
 
 namespace App\Services;
 use App\Repositories\Task\TaskRepository;
-
+use App\Models\Task;
 
 class TaskService
 {
-    public function __construct(protected TaskRepository $taskRepository){
-  
-    }
-    public function show($request = "0", $user)
-    {
-      $user_tasks = $this->taskRepository->userTasks($user->id);
+  protected $taskRepository;
 
+    public function __construct(TaskRepository $taskRepository)
+    {
+      $this->taskRepository = $taskRepository;
+    }
+
+    public function show($user, $request = 0)
+    {
+      $user_tasks = $this->taskRepository->getAll()->where("user_id", $user->id);
+
+      if ($request){
       /*  if ($sorter_var = $request->input('sorter_var')){
           if ($sorter_var == "latest"){
             $user_tasks = $user_tasks->orderBy("created_at", "desc");
           } elseif ($sorter_var == "alphabetically"){
             $user_tasks = $user_tasks->orderBy("name", "asc");
-        }
+          }
         } 
+
         if ($filter_var = $request->input('filter_var')){
           if ($filter_var == "active"){
-            $user_tasks = $user_tasks->where("completed", "0");
+              $user_tasks = $user_tasks->where("completed", "0");
           } elseif ($filter_var == "completed"){
-            $user_tasks = $user_tasks->where("completed", "1");
+              $user_tasks = $user_tasks->where("completed", "1");
           }
         }*/
-        return $user_tasks;
+      } 
+      return $user_tasks;
     }
 
     public function find($id)
     {
-        return $this->taskRepository->find($id);
+      return $this->taskRepository->find($id);
     }
   
-    /**
-    * @param Request $request
-    * @return Task $newTask
-    */
-    public function create(Request $request)
+    public function store($taskData, $user)
     {
-      return $this->taskRepository->create($taskData);
+      $task = $this->taskRepository->store($taskData);
+      $task->user_id = $user->id;
+      $task->completed = 0;
+      $task->save();
     }
     
-    public function update($id, array $newTaskData)
+    public function update($id, array $newTaskData, $user)
     {
-      $task = $this->taskRepository->update($id);
-        return $task;
+      $task = $this->taskRepository->update($id, $newTaskData, $user);
+      return $task;
     }
 
     public function check($id)
@@ -62,8 +68,9 @@ class TaskService
       $task->save();
       return $task;
     }
+
     public function destroy($id)
     {  
-      $task->delete();
+      $this->taskRepository->destroy($id);
     }
   }

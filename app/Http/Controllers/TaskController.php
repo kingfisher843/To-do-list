@@ -9,24 +9,28 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Filter;
 use App\Services\TaskService;
+use App\Repositories\Task\TaskRepository;
 
 class TaskController extends Controller
 {
-  public function __construct(protected TaskService $taskService){
-
+  public function __construct(protected TaskService $taskService, protected TaskRepository $taskRepository){
   }
-  public function show(Request $request, User $user)
+
+  public function show()
   {
+
     if (Auth::check()) {
-     $tasks = $this->taskService->show($request, $user);
+      $user = Auth::user();
+      $request = request();
+      $tasks = $this->taskService->show($user);
       
+        
       return view('tasks', [
         'tasks' => $tasks
         ]);
-
-    }
+      }
+  
       return view('login', [
         "message" => "Please log in first!"
       ]);
@@ -46,14 +50,14 @@ class TaskController extends Controller
   public function store(Request $request): RedirectResponse
   {
     if (Auth::check()) {
-  
-    $this->taskService->store($request);
+      $taskData = $request->all();
+      $user = Auth::user();
+    $this->taskService->store($taskData, $user);
    
     return redirect('/tasks');
 
   }
-    return redirect('/')->with('message', 'Please log in first!');
-  
+    return redirect('/')->with('message', 'Please log in first!'); 
 }
   
   public function edit($id): View
@@ -66,7 +70,10 @@ class TaskController extends Controller
 
   public function update(Task $task, Request $request)
   {
-    $this->taskService->update($request);
+    $user = Auth::user();
+    $newTaskData = $request->all();
+    $this->taskService->update($task->id, $newTaskData, $user);
+
     return redirect('/tasks');
   }
 
@@ -82,7 +89,7 @@ class TaskController extends Controller
   }
   public function destroy(Task $task)
   {   
-    $this->taskService->delete();
+    $this->taskService->destroy($task->id);
     return redirect('/tasks')->with('success', 'Task deleted.');
   }
 }
