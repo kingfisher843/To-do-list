@@ -6,9 +6,10 @@
   <br>
   <!--NEW TASK BUTTON-->
   <form action="/tasks/new" class="text-center">
-    <button type="submit" class="col-2 col-md-1 btn btn-warning text-center rounded-pill">+</button>
+    <button type="submit" class="col-2 col-md-1 btn btn-success text-center rounded-pill">New task</button>
   </form>
   <br>
+  @if(count($tasks))
   Show tasks:<br>
   <form action="/tasks" method="GET">
     <div class="btn-group" role="group">
@@ -43,11 +44,11 @@
           $checkboxText = "text-dark";
         @endphp
       @endif
-
-      <table class="table rounded bg-white">
+      <!--TASK-->
+      <table class="table rounded bg-white border">
         <tr>
           <!--CHECKBOX-->
-          <div class="form-check">
+          <div class="form-check" id="hover-div">
             <form action="{{url('check/'.$task->id)}}" method="POST">
               @csrf
               @method('PATCH')
@@ -88,4 +89,9 @@
       </tr>    
     </table>
   @endforeach
+
+  @else
+    <p class="text-center align-middle text-secondary">It seems pretty empty! Maybe you should create new task?<br>
+    You can do that very simply by clicking this green button above!</p>
+  @endif
 </x-layout>

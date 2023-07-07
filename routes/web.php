@@ -28,14 +28,14 @@ use App\Http\Controllers\SessionController;
  */
 Route::redirect('/', '/register');
 
-Route::get('/register', [RegisterController::class, 'create']);
-Route::post('/register', [RegisterController::class, 'save']);
+Route::get('/register', [RegisterController::class, 'show']);
+Route::post('/register', [RegisterController::class, 'store']);
 
 /**
  * Login & logout (Session)
  */
-Route::get('/login', [SessionController::class, 'create']);
-Route::post('/login', [SessionController::class, 'store']);
+Route::get('/login', [SessionController::class, 'show']);
+Route::post('/login', [SessionController::class, 'login']);
 Route::get('/logout', [SessionController::class, 'destroy']);
 
 
@@ -45,7 +45,6 @@ Route::get('/logout', [SessionController::class, 'destroy']);
 * Display tasks
 */
 Route::get('/tasks', [TaskController::class, 'show']);
-Route::post('/tasks', [TaskController::class, 'sort']);
 
 /**
 * Add new task

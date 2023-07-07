@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Http\Requests\TaskRequest;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\View\View;
@@ -23,7 +24,8 @@ class TaskController extends Controller
     if (Auth::check()) {
       $user = Auth::user();
       $request = request();
-      $tasks = $this->taskService->show($user);
+      $tasks = $this->taskService->show($user, $request);
+      
       
         
       return view('tasks', [
@@ -47,18 +49,17 @@ class TaskController extends Controller
   * @param Request $request
   * @return redirect ('/tasks') (after handling the request)
   */
-  public function store(Request $request): RedirectResponse
+  public function store(TaskRequest $request): RedirectResponse
   {
     if (Auth::check()) {
       $taskData = $request->all();
       $user = Auth::user();
-    $this->taskService->store($taskData, $user);
+      $this->taskService->store($taskData, $user);
    
-    return redirect('/tasks');
-
-  }
+      return redirect('/tasks');
+    }
     return redirect('/')->with('message', 'Please log in first!'); 
-}
+  }
   
   public function edit($id): View
   {
@@ -68,7 +69,7 @@ class TaskController extends Controller
     ]);
   }
 
-  public function update(Task $task, Request $request)
+  public function update(Task $task, TaskRequest $request)
   {
     $user = Auth::user();
     $newTaskData = $request->all();
@@ -87,6 +88,7 @@ class TaskController extends Controller
     $task->save();
     return redirect('/tasks');
   }
+
   public function destroy(Task $task)
   {   
     $this->taskService->destroy($task->id);

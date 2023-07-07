@@ -18,7 +18,7 @@ class TaskService
       $user_tasks = $this->taskRepository->getAll()->where("user_id", $user->id);
 
       if ($request){
-      /*  if ($sorter_var = $request->input('sorter_var')){
+        if ($sorter_var = $request['sorter_var']){
           if ($sorter_var == "latest"){
             $user_tasks = $user_tasks->orderBy("created_at", "desc");
           } elseif ($sorter_var == "alphabetically"){
@@ -26,13 +26,13 @@ class TaskService
           }
         } 
 
-        if ($filter_var = $request->input('filter_var')){
+        if ($filter_var = $request['filter_var']){
           if ($filter_var == "active"){
               $user_tasks = $user_tasks->where("completed", "0");
           } elseif ($filter_var == "completed"){
               $user_tasks = $user_tasks->where("completed", "1");
           }
-        }*/
+        }
       } 
       return $user_tasks;
     }

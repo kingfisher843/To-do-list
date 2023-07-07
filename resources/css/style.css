@@ -3,3 +3,8 @@
     background-color: black;
     color: white;
 }
+.check-me:hover { 
+    color: #f9f7f4 !important; 
+    background-color:  #04c3ee !important;   
+    border-color: #5b288e !important; 
+  } 

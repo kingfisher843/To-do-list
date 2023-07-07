@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Models\Task;
@@ -11,18 +11,13 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-    public function create(): View
+    public function show(): View
     {
         return view('registration');
     }
 
-    public function save(Request $request)
+    public function store(RegisterRequest $request)
     {
-        $validated = $request->validate([
-            'username' => 'required|max:20',
-            'email' => 'required|email',
-            'password' => 'required|min:8|max:20',
-          ]);
         $userData = [
             'username' => $request->username,
             'email' => $request->email,

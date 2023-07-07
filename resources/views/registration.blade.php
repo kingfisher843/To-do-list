@@ -2,7 +2,7 @@
     <br>
         <!--REGISTRATION-->
         <div class="col-md-4">
-            <h4>Registration</h4>
+            <h4 class="text-center">Join us now!</h4>
             <table class="table table-bordered border-primary bg-light rounded">
                 <tr>
                     <td>

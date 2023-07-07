@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Auth;
 
 class SessionController extends Controller
 {
-    public function create(): View
+    public function show(): View
     {
         return view('login');
     }
-    public function store(Request $request)
+    public function login(Request $request)
     {
         $credentials = $request->validate([
             'username' => 'required',
