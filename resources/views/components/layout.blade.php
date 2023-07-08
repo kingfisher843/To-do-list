@@ -28,7 +28,7 @@
       <div class="collapse navbar-collapse">
       <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="navbar-text" href="#">Simple App for all your tasks!</a><br>
+        <a class="navbar-text" href="#">{{$welcome ?? "Simple App for all your tasks!"}}</a><br>
     </div>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">

@@ -25,7 +25,7 @@ class RegisterController extends Controller
         ];
           $user = User::create($userData);
           Auth::login($user);
-           return redirect('/tasks');
+        return redirect('/tasks')->with('welcome', 'Oh sweet! Looks like we have new user!');
            
     }
 }

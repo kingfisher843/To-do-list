@@ -55,7 +55,7 @@ class TaskController extends Controller
       $taskData = $request->all();
       $user = Auth::user();
       $this->taskService->store($taskData, $user);
-   
+      
       return redirect('/tasks');
     }
     return redirect('/')->with('message', 'Please log in first!'); 

@@ -44,7 +44,7 @@ class TaskService
   
     public function store($taskData, $user)
     {
-      $task = $this->taskRepository->store($taskData);
+      $task = $this->taskRepository->store($taskData, $user);
       $task->user_id = $user->id;
       $task->completed = 0;
       $task->save();
@@ -53,6 +53,7 @@ class TaskService
     public function update($id, array $newTaskData, $user)
     {
       $task = $this->taskRepository->update($id, $newTaskData, $user);
+      $task->user_id = $user->id;
       return $task;
     }
 

@@ -26,18 +26,20 @@ class TaskRepository implements TaskInterface
         return $this->task->find($id);
     }
 
-    public function store(array $taskData)
+    public function store(array $taskData, $user)
     {
-        $newTask = $this->task->create($taskData);
+        $newTask = $this->task;
+        $newTask->name = $taskData["name"];
+        $newTask->description = $taskData["description"];
+        $newTask->save();
         return $newTask;
     }
 
-    public function update($id, array $newTaskData, $user)
+    public function update($id, array $newTaskData)
     {
         $task = $this->task->find($id);
         $task->name = $newTaskData["name"];
         $task->description = $newTaskData["description"];
-        $task->user_id = $user->id;
         $task->save();
         return $task;
     }

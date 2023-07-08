@@ -8,9 +8,9 @@ interface TaskInterface {
 
     public function find($id);
 
-    public function store(array $taskData);
+    public function store(array $taskData, $user);
 
-    public function update($id, array $newTaskData, $user);
+    public function update($id, array $newTaskData);
 
     public function destroy($id);
 }

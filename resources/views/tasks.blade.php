@@ -3,6 +3,7 @@
 
 
 <x-layout>
+  {{$newbie ?? "Good to see you again!"}}
   <br>
   <!--NEW TASK BUTTON-->
   <form action="/tasks/new" class="text-center">
@@ -91,6 +92,7 @@
   @endforeach
 
   @else
+  
     <p class="text-center align-middle text-secondary">It seems pretty empty! Maybe you should create new task?<br>
     You can do that very simply by clicking this green button above!</p>
   @endif
