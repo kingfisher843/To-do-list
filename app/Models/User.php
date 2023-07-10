@@ -53,12 +53,12 @@ class User extends Authenticatable
         return static::all();
     }
 
-    public function findUser()
+    public function find($id)
     {
         return static::find($id);
     }
 
-    public function deleteUser()
+    public function deleteUser($id)
     {
         return static::find($id)->delete();
     }

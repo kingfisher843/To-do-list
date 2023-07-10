@@ -29,7 +29,8 @@ class TaskController extends Controller
       
         
       return view('tasks', [
-        'tasks' => $tasks
+        'tasks' => $tasks,
+        'user' => $user
         ]);
       }
   

@@ -2,7 +2,6 @@
 
 namespace App\Services;
 use App\Repositories\Task\TaskRepository;
-use App\Models\Task;
 
 class TaskService
 {

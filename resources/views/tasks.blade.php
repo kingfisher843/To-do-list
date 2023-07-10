@@ -26,6 +26,7 @@
       <button type="submit" class="btn btn-secondary" name="sorter_var" value="alphabetically">alphabetically</button>
     </div>
   </form>
+  {{$user->id}}
 <br><br>
     <tbody>
       <!--LIST OF TASKS-->

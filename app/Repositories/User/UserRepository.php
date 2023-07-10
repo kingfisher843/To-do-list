@@ -2,12 +2,12 @@
 
 namespace App\Repositories\User;
 
-use App\Repositories\UserInterface as UserInterface;
-use App\User;
+use App\Repositories\User\UserInterface;
+use App\Models\User;
 
 class UserRepository implements UserInterface
 {
-    public $user;
+    protected $user;
 
     public function __construct(User $user){
         $this->user = $user;
