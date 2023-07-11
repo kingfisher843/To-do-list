@@ -1,6 +1,7 @@
 <?php
-
 namespace App\Repositories\Task;
+
+use App\Models\Task;
 
 interface TaskInterface {
 
@@ -8,7 +9,7 @@ interface TaskInterface {
 
     public function find($id);
 
-    public function store(array $taskData, $user);
+    public function store(Task $task, $user);
 
     public function update($id, array $newTaskData);
 

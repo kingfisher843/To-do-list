@@ -9,10 +9,10 @@
                         <form method="POST" action="{{url('/register')}}" id="sign-in" name="sign-up">
                             @csrf  
                             <label for="username" class="form-label"><h6>Username:</h6></label>
-                            <input type="text" name="username" class="form-control" placeholder="username">
+                            <input type="text" name="username" class="form-control" placeholder="username" value="{{ old('username') }}">
                                 <br>
                             <label for="email" class="form-label"><h6>E-mail:</h6></label>
-                            <input type="email" name="email" class="form-control" placeholder="e-mail address">
+                            <input type="email" name="email" class="form-control" placeholder="e-mail address" value="{{ old('email') }}">
                                 <br>
                             <label for="password" class="form-label"><h6>Password:</h6></label>
                             <input type="password" name="password" class="form-control" placeholder="password (8-20 characters)">

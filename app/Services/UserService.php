@@ -16,5 +16,9 @@ class UserService
     public function find($id){
         return $this->userRepository->find($id);
     }
+
+    /**
+     * @todo more features useful in the app
+     */
 }
 ?>

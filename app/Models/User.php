@@ -47,19 +47,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class);
     }
-
-    public  function getAll()
-    {
-        return static::all();
-    }
-
-    public function find($id)
-    {
-        return static::find($id);
-    }
-
-    public function deleteUser($id)
-    {
-        return static::find($id)->delete();
-    }
 }

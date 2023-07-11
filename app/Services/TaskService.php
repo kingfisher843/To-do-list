@@ -2,6 +2,7 @@
 
 namespace App\Services;
 use App\Repositories\Task\TaskRepository;
+use App\Models\Task;
 
 class TaskService
 {
@@ -43,10 +44,10 @@ class TaskService
   
     public function store($taskData, $user)
     {
-      $task = $this->taskRepository->store($taskData, $user);
-      $task->user_id = $user->id;
-      $task->completed = 0;
-      $task->save();
+      $task = new Task;
+      $task->name = $taskData["name"];
+      $task->description = $taskData["description"];
+      $this->taskRepository->store($task, $user);
     }
     
     public function update($id, array $newTaskData, $user)
