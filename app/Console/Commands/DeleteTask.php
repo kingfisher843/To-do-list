@@ -13,14 +13,15 @@ class DeleteTask extends Command
      *
      * @var string
      */
-    protected $signature = 'task:delete {task_id*}';
+    protected $signature = "task:delete 
+    {task_id* : id or array of id's of tasks to delete}";
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'delete task by id; accepts array';
+    protected $description = 'delete task by id';
 
     /**
      * Execute the console command.

@@ -12,7 +12,8 @@ class ShowTasks extends Command
      *
      * @var string
      */
-    protected $signature = 'task:show {user_id=0}';
+    protected $signature = 'task:show 
+    {user_id=0 : The ID of user. If no ID is provided, shows all tasks in database}';
 
     /**
      * The console command description.

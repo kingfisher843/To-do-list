@@ -16,7 +16,10 @@ class CreateTask extends Command
      *
      * @var string
      */
-    protected $signature = 'task:create {userId} {title} {description}';
+    protected $signature = 'task:create 
+    {userId : The ID of user} 
+    {title : Title of task} 
+    {description? : Optional description of task}';
 
     /**
      * The console command description.

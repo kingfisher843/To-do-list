@@ -16,14 +16,18 @@ class UpdateTask extends Command
      *
      * @var string
      */
-    protected $signature = 'task:update {taskId} {title} {description?}';
+    protected $signature = 'task:update 
+    {taskId : The ID of user} 
+    {title : new title} 
+    {description? : description of the task} 
+    {--preserve=true : whether the title and descriptions should preserve old values on empty arguments}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'update given task with new data. To preserve old title, use empty string as argument';
+    protected $description = 'update given task with new data';
 
     protected $taskRepository;
 
@@ -35,15 +39,21 @@ class UpdateTask extends Command
         $this->taskRepository = $taskRepository;
 
         $taskId = $this->argument('taskId');
+        $name = $this->argument('title');
+        $description = $this->argument('description');
+        $preserve = filter_var($this->option('preserve'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
 
-        if ($task = Task::find($taskId)){
+            if ($task = Task::find($taskId)){
 
-            if(!$name = $this->argument('title')){
+            if(!$name && $preserve == true){
                 $name = $task->name;
+                dd('preserved name');
             }
-            if(!$description = $this->argument('description')){
+            if(!$description && $preserve == true){
                 $description = $task->description;
             }
+       
+        
 
             $contents = ["name" => $name, "description" => $description];
             if ($success = $this->taskRepository->update($task, $contents)){
