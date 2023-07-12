@@ -11,7 +11,7 @@ interface TaskInterface {
 
     public function store(Task $task, $user);
 
-    public function update($id, array $newTaskData);
+    public function update(Task $task, $newTaskData);
 
     public function destroy($id);
 }

@@ -14,7 +14,9 @@ return [
     */
 
     'commands' => [
-        App\Console\Commands\createTask::class,
+        App\Console\Commands\CreateTask::class,
+        App\Console\Commands\DeleteTask::class,
+        App\Console\Commands\ShowTask::class,
     ],
 
     /*

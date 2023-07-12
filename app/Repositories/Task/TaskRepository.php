@@ -34,9 +34,8 @@ class TaskRepository implements TaskInterface
         return $task;
     }
 
-    public function update($id, array $newTaskData)
+    public function update(Task $task, $newTaskData)
     {
-        $task = $this->task->find($id);
         $task->name = $newTaskData["name"];
         $task->description = $newTaskData["description"];
         $task->save();
@@ -45,6 +44,6 @@ class TaskRepository implements TaskInterface
 
     public function destroy($id)
     {
-        return $this->task->find($id)->delete();
+        return $this->task->findOrFail($id)->delete();
     }
 }
