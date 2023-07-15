@@ -21,7 +21,8 @@ class RegisterController extends Controller
         $userData = [
             'username' => $request->username,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'completed_tasks' => 0,
         ];
           $user = User::create($userData);
           Auth::login($user);

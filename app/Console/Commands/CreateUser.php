@@ -53,6 +53,7 @@ class CreateUser extends Command
         $user->username = $username;
         $user->email = $email;
         $user->password = $password;
+        $user->completed_tasks = 0;
             if ($user->save()){
                 $this->info('User created');
             }

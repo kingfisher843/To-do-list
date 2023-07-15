@@ -3,6 +3,7 @@
 namespace App\Services;
 use App\Repositories\Task\TaskRepository;
 use App\Models\Task;
+use App\Models\User;
 
 class TaskService
 {
@@ -57,16 +58,18 @@ class TaskService
       return $task;
     }
 
-    public function check($id)
+    public function check(Task $task, User $user)
     {
-      $task = $this->taskRepository->find($id);
-
       if ($task->completed){
         $task->completed = 0;
+        $user->completed_tasks -= 1;
       } else {
         $task->completed = 1;
+        $user->completed_tasks += 1;
       }
+      
       $task->save();
+      $user->save();
       return $task;
     }
 

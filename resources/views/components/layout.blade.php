@@ -34,7 +34,9 @@
       <ul class="navbar-nav ml-auto">
         @if( auth()->check() )
           <li class="nav-item">
-            <a class="nav-link font-weight-bold" href="#">Hi {{ auth()->user()->username }}!</a>
+            <form action="/profile" method="GET">
+            <button class="btn btn-link nav-link">Hi {{ auth()->user()->username }}!</button>
+            </form>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/logout">Log Out</a>

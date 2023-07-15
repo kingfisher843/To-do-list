@@ -20,6 +20,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\UserController;
 
 
 
@@ -67,3 +68,8 @@ Route::patch('/check/{task}', [TaskController::class, 'check']);
 * Delete task
 */
 Route::delete('/delete/{task}', [TaskController::class, 'destroy']);
+
+/**
+ * User profile
+ */
+Route::get('/profile', [UserController::class, 'show']);

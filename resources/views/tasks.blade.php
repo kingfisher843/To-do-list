@@ -3,7 +3,6 @@
 
 
 <x-layout>
-  {{$newbie ?? "Good to see you again!"}}
   <br>
   <!--NEW TASK BUTTON-->
   <form action="/tasks/new" class="text-center">

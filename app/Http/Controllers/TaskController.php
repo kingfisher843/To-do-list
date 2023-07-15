@@ -79,14 +79,10 @@ class TaskController extends Controller
     return redirect('/tasks');
   }
 
-  public function check(Task $task, Request $request)
+  public function check(Task $task)
   {
-    if ($task->completed){
-      $task->completed = 0;
-    } else {
-      $task->completed = 1;
-    }
-    $task->save();
+    $user = Auth::user();
+    $this->taskService->check($task, $user);
     return redirect('/tasks');
   }
 
