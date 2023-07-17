@@ -6,7 +6,7 @@
   <br>
   <!--NEW TASK BUTTON-->
   <form action="/tasks/new" class="text-center">
-    <button type="submit" class="col-2 col-md-1 btn btn-success text-center rounded-pill">New task</button>
+    <button type="submit" class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-1 btn btn-success text-center rounded-pill">New task</button>
   </form>
   <br>
   @if(count($tasks))
@@ -25,7 +25,6 @@
       <button type="submit" class="btn btn-secondary" name="sorter_var" value="alphabetically">alphabetically</button>
     </div>
   </form>
-  {{$user->id}}
 <br><br>
     <tbody>
       <!--LIST OF TASKS-->
@@ -92,8 +91,9 @@
   @endforeach
 
   @else
-  
-    <p class="text-center align-middle text-secondary">It seems pretty empty! Maybe you should create new task?<br>
-    You can do that very simply by clicking this green button above!</p>
+  <div class="p-3 text-center text-light bg-info border border-light rounded">
+    It seems pretty empty! Maybe you should create new task?
+    You can do that very simply by clicking this green button above!
+  </div>
   @endif
 </x-layout>

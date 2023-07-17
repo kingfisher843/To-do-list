@@ -8,6 +8,7 @@ use Illuminate\View\View;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class SessionController extends Controller
 {
@@ -36,8 +37,9 @@ class SessionController extends Controller
     }
     public function destroy()
     {
-       Auth::logout();
+        Session::flush();
+        Auth::logout();
     
-       return redirect('/');
+        return redirect('/');
     }
 }

@@ -3,7 +3,7 @@
         <!--REGISTRATION-->
         <div class="col-md-4">
             <h4 class="text-center">Join us now!</h4>
-            <table class="table table-bordered border-primary bg-light rounded">
+            <table class="table table-bordered border-secondary bg-light rounded">
                 <tr>
                     <td>
                         <form method="POST" action="{{url('/register')}}" id="sign-in" name="sign-up">

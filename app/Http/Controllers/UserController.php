@@ -15,9 +15,12 @@ class UserController extends Controller
     //shows profile of user
     public function show()
     {
+        if(Auth::check()){
         $user = Auth::user();
         
         return view('profile', ['user' => $user]);
-        
+        } else {
+            return redirect('/');
+        }
     }
 }

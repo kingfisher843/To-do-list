@@ -1,7 +1,8 @@
 <x-layout>
     <br>
-    <h4 class="col-md-4">Sign in</h4>
-    <table class="table table-bordered border-primary bg-light col-md-4 rounded">
+    <div class="col-md-4>">
+    <h4 class="text-center">Sign in</h4>
+    <table class="table table-bordered border-primary bg-light rounded">
         <tr>
             <td>
                 <form method="POST" action="{{url('/login')}}" id="sign-in" name="sign-up">
