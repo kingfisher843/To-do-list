@@ -3,35 +3,35 @@
 
 
 <x-layout>
-  <br>
+  <br><br><br><br>
   <!--NEW TASK BUTTON-->
   <form action="/tasks/new" class="text-center">
-    <button type="submit" class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-1 btn btn-success text-center rounded-pill">New task</button>
+    <button type="submit" class="hovercol-4 col-sm-3 col-md-2 col-lg-2 col-xl-1 btn btn-success text-center rounded-pill">New task</button>
   </form>
   <br>
   @if(count($tasks))
-  Show tasks:<br>
-  <form action="/tasks" method="GET">
-    <div class="btn-group" role="group">
-      <button type="submit" class="btn btn-secondary" name="filter_var" value="all">All</button>
-      <button type="sumbit" class="btn btn-secondary" name="filter_var" value="active">Active</button>
-      <button type="submit" class="btn btn-secondary" name="filter_var" value="completed">Completed</button>
-    </div>
+    Show tasks:<br>
+    <form action="/tasks" method="GET">
+      <div class="btn-group col-md-3" role="group">
+        <button type="submit" class="btn btn-secondary" name="filter_var" value="all">All</button>
+        <button type="sumbit" class="btn btn-secondary" name="filter_var" value="active">Active</button>
+        <button type="submit" class="btn btn-secondary" name="filter_var" value="completed">Completed</button>
+      </div>
+      <br><br>
+      Sorted by:<br>
+      <div class="btn-group col-md-3" role="group">
+        <button type="submit" class="btn btn-secondary" name="sorter_var" value="latest">Latest</button>
+        <button type="submit" class="btn btn-secondary" name="sorter_var" value="oldest">Oldest</button>
+        <button type="submit" class="btn btn-secondary" name="sorter_var" value="alphabetically">Alphabetically</button>
+      </div>
+    </form>
     <br><br>
-    Sorted by:<br>
-    <div class="btn-group" role="group">
-      <button type="submit" class="btn btn-secondary" name="sorter_var" value="latest">latest</button>
-      <button type="submit" class="btn btn-secondary" name="sorter_var" value="oldest">oldest</button>
-      <button type="submit" class="btn btn-secondary" name="sorter_var" value="alphabetically">alphabetically</button>
-    </div>
-  </form>
-<br><br>
     <tbody>
-      <!--LIST OF TASKS-->
-      @foreach ($tasks as $task)
+    <!--LIST OF TASKS-->
+    @foreach ($tasks as $task)
       
       
-      @if ($task->completed == "1")
+      @if($task->completed == "1")
         @php
           $checkboxClass = "bi-check-square-fill";
           $checkboxBg = "bg-secondary";
@@ -48,7 +48,7 @@
       <table class="table rounded bg-white border">
         <tr>
           <!--CHECKBOX-->
-          <div class="form-check" id="hover-div">
+          <div class="form-check">
             <form action="{{url('check/'.$task->id)}}" method="POST">
               @csrf
               @method('PATCH')
@@ -84,16 +84,15 @@
           <!--DESCRIPTION-->  
           <td>
             <h6 class="text-muted">{{ $task->description }}</h6>
-          </td>
-         
-      </tr>    
-    </table>
-  @endforeach
+          </td>  
+        </tr>    
+      </table>
+    @endforeach
 
   @else
-  <div class="p-3 text-center text-light bg-info border border-light rounded">
-    It seems pretty empty! Maybe you should create new task?
-    You can do that very simply by clicking this green button above!
-  </div>
+    <div class="p-3 text-center text-light bg-info border border-light rounded">
+      It seems pretty empty! Maybe you should create new task?
+      You can do that very simply by clicking this green button above!
+    </div>
   @endif
 </x-layout>

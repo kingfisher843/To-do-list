@@ -29,9 +29,8 @@ class SessionController extends Controller
             return redirect()->intended('/tasks');
 
         } else {
-
-            return back()->withErrors([
-                'error' => 'The email or password is incorrect, please try again'
+            return back()->withInput()->withErrors([
+                'error' => 'The username or password is incorrect, please try again'
             ]);
         }
     }

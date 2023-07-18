@@ -1,5 +1,5 @@
 <x-layout>
-    <br>
+    <br><br><br><br>
         <!--REGISTRATION-->
         <div class="col-md-4">
             <h4 class="text-center">Join us now!</h4>

@@ -30,7 +30,7 @@ class TaskController extends Controller
         
       return view('tasks', [
         'tasks' => $tasks,
-        'user' => $user
+        'user' => $user,
         ]);
       }
   

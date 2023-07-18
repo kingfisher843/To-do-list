@@ -1,5 +1,5 @@
 <x-layout>
-<br>
+  <br><br><br><br>
     <div class="panel">
       @include('common.errors')
     </div>
