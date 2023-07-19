@@ -53,7 +53,8 @@ class TaskService
     
     public function update($id, array $newTaskData, $user)
     {
-      $task = $this->taskRepository->update($id, $newTaskData, $user);
+      $task = $this->taskRepository->find($id);
+      $task = $this->taskRepository->update($task, $newTaskData, $user);
       $task->user_id = $user->id;
       return $task;
     }

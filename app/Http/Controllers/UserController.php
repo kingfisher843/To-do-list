@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
+
 class UserController extends Controller
 {
     public function __construct(protected UserService $userService)
@@ -21,6 +23,23 @@ class UserController extends Controller
         return view('profile', ['user' => $user]);
         } else {
             return redirect('/');
+        }
+    }
+
+    public function update($property, Request $request)
+    {
+        if(Auth::check()){
+            $user = Auth::user();
+            
+            Artisan::call('user:update', [
+                'user_id' => $user->id,
+                'property' => $property,
+                'value' => $request->input('value'),
+            ]);
+
+            return view('profile', ['user' => $user]);
+        } else {
+          return redirect('/');
         }
     }
 }

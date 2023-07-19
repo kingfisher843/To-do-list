@@ -1,9 +1,5 @@
-
-
-
-
 <x-layout>
-  <br><br><br><br>
+
   <!--NEW TASK BUTTON-->
   <form action="/tasks/new" class="text-center">
     <button type="submit" class="hovercol-4 col-sm-3 col-md-2 col-lg-2 col-xl-1 btn btn-success text-center rounded-pill">New task</button>

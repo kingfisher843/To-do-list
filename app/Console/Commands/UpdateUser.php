@@ -23,51 +23,81 @@ class UpdateUser extends Command
      *
      * @var string
      */
-    protected $description = 'Change username or password of user';
+    protected $description = 'Change username, email, or password of user';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $userId = $this->argument('user_id');
-        $property = $this->argument('property');
-        $value = $this->argument('value');
+        try {
+            $userId = $this->argument('user_id');
+            $property = $this->argument('property');
+            $value = $this->argument('value');
 
-        if ($user = User::find($userId)){
+            if ($user = User::find($userId)){
+                
             
-        
 
-        switch($property){
-            case 'username':
-                $validator = Validator::make([
-                    'username' => $value,
-                ], [
-                    'username' => 'required|min:4|max:20|unique:users'
-                ]);
-                $user->username = $value;
-                $user->save();
-                break;
-            case 'password':
-                $validator = Validator::make([
-                    'password' => $value,
-                ], [
-                    'password' => 'required|min:8|max:20'
-                ]);
-                $user->password = $value;
-                $user->save();
-                break;
-            default:
-            $this->error('Invalid property ' . $property . '. "username" or "password" expected.');
+            switch($property)
+            {
+                case 'username':
+                    $validator = Validator::make([
+                        'username' => $value,
+                    ], [
+                        'username' => 'required|min:4|max:20|unique:users'
+                    ]);
+
+                    if($validator->fails()){
+                        throw new \Exception('Invalid username');
+                    } else {
+                        $user->username = $value;
+                        $user->save();
+                    }
+                    break;
+
+                case 'email':
+                    $validator = Validator::make([
+                        'email' => $value,
+                    ], [
+                        'email' => 'required|email|unique:users'
+                    ]);
+
+                    if($validator->fails()){
+                        throw new \Exception('Invalid e-mail');
+                    } else {
+                        $user->email = $value;
+                        $user->save();
+                    }
+                    break;   
+
+                case 'password':
+                    $validator = Validator::make([
+                        'password' => $value,
+                    ], [
+                        'password' => 'required|min:8|max:20'
+                    ]);
+                    
+                    if($validator->fails()){
+                        throw new \Exception('Invalid password');
+                    } else {
+                        $user->password = $value;
+                        $user->save();
+                    }
+                    break;
+                    
+                default:
+                throw new \Exception('Invalid property ' . $property . '. "username", "email" or "password" expected.');
+                return;
+            }
+
+            } else {
+                throw new \Exception('User not found.');
+            }
+        } catch(\Exception $e) {
+            $this->error($e->getMessage());
+            return;
         }
-        
-            if ($validator->fails()) {
-                $this->error('Cannot update the user. See error messages below:');
-            
-                foreach ($validator->errors()->all() as $error) {
-                    $this->line($error);
-                }
-            }        
-        }
+        $this->info('Success!');
     }
 }

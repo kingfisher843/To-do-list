@@ -63,7 +63,7 @@
     
 
     <div class="container bg-white" id="content">
-
+      <br><br><br><br>
         {{ $slot }}
 
     </div>

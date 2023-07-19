@@ -1,5 +1,5 @@
   <x-layout>
-   <br><br><br><br>
+
        <div class="panel">
          @include('common.errors')
        </div>
@@ -9,13 +9,13 @@
             
             <!-- Username -->
             <div class="row text-center">
-               <div class="col-sm-6">
-                  <form method="POST" action="" id="edit_username">
+               <div class="col-sm-5">
+                  <form method="POST" action="profile/username" id="edit_username"  onsubmit="confirm ('Are you sure you want to change your username?');">
                      @csrf  
                      @method('PATCH')
-                     <label for="username">Username:</label>
+                     <label for="value">Username:</label>
                      <div class="col-sm-3 input-group mb-3">
-                        <input type="text" name="username" id="username" class="form-control" value="{{$user->username}}" aria-describedby="button-addon1">
+                        <input type="text" name="value" id="username" class="form-control" value="{{$user->username}}" aria-describedby="button-addon1">
                         <button class="btn btn-dark text-center" id="button-addon1">Save</button>
                      </div>
                   </form>
@@ -28,13 +28,13 @@
             
             <!-- E-mail -->
             <div class="row text-center">
-               <div class="col-sm-6">
-                  <form method="POST" action="" id="edit_email">
+               <div class="col-sm-5">
+                  <form method="POST" action="profile/email" id="edit_email" onsubmit="confirm ('Are you sure you want to change your username? We will send email to your new email to ensure!');"">
                      @csrf  
                      @method('PATCH')
-                     <label for="email">E-mail:</label>
-                     <div class="col-sm-3 input-group mb-3">
-                        <input type="email" name="email" id="email" class="form-control" value="{{$user->email}}" aria-describedby="button-addon2">
+                     <label for='value'>E-mail:</label>
+                     <div class='col-sm-3 input-group mb-3'>
+                        <input type="email" name="value" id="email" class="form-control" value="{{$user->email}}" aria-describedby="button-addon2">
                         <button class="btn btn-dark text-center" id="button-addon2">Save</button>
                      </div>
                   </form>
@@ -47,13 +47,13 @@
             </div>
             <!-- Password -->
             <div class="row text-center">
-               <div class="col-sm-6">
-                  <form method="POST" action="" id="edit_password">
+               <div class="col-sm-5">
+                  <form method="POST" action="profile/password" id="edit_password">
                      @csrf  
                      @method('PATCH')
-                     <label for="password">Password:</label>
+                     <label for="value">Password:</label>
                      <div class="col-sm-3 input-group mb-3">
-                        <input type="text" name="password" id="password" class="form-control" placeholder="you can change password - just make it good!" aria-describedby="button-addon3">
+                        <input type="text" name="value" id="password" class="form-control" placeholder="you can change password - just make it good!" aria-describedby="button-addon3">
                         <button class="btn btn-dark text-center" id="button-addon3">Save</button>
                      </div>
                   </form>

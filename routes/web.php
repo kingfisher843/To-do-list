@@ -73,3 +73,4 @@ Route::delete('/delete/{task}', [TaskController::class, 'destroy']);
  * User profile
  */
 Route::get('/profile', [UserController::class, 'show']);
+Route::patch('profile/{property}', [UserController::class, 'update']);
