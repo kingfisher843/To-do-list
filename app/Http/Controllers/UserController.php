@@ -36,6 +36,8 @@ class UserController extends Controller
                 'property' => $property,
                 'value' => $request->input('value'),
             ]);
+            
+        $user = Auth::user()->fresh();
 
             return view('profile', ['user' => $user]);
         } else {

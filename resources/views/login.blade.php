@@ -1,5 +1,4 @@
 <x-layout>
-    <br><br><br><br>
     <div class="col-md-4">
         <h4 class="text-center">Sign in</h4>
         <table class="table table-bordered border-secondary bg-light rounded">

@@ -6,22 +6,27 @@
   </form>
   <br>
   @if(count($tasks))
-    Show tasks:<br>
-    <form action="/tasks" method="GET">
-      <div class="btn-group col-md-3" role="group">
-        <button type="submit" class="btn btn-secondary" name="filter_var" value="all">All</button>
-        <button type="sumbit" class="btn btn-secondary" name="filter_var" value="active">Active</button>
-        <button type="submit" class="btn btn-secondary" name="filter_var" value="completed">Completed</button>
-      </div>
-      <br><br>
+  <div class="row mt-1">
+    <div class="col-md-3">
+      Show tasks:<br>
+      <form action="/tasks" method="GET">
+        <div class="btn-group" role="group">
+          <button type="submit" class="btn btn-secondary" name="filter_var" value="all">All</button>
+          <button type="sumbit" class="btn btn-secondary" name="filter_var" value="active">Active</button>
+          <button type="submit" class="btn btn-secondary" name="filter_var" value="completed">Completed</button>
+        </div>
+    </div>
+    <div class="col-md-3">
       Sorted by:<br>
       <div class="btn-group col-md-3" role="group">
         <button type="submit" class="btn btn-secondary" name="sorter_var" value="latest">Latest</button>
         <button type="submit" class="btn btn-secondary" name="sorter_var" value="oldest">Oldest</button>
         <button type="submit" class="btn btn-secondary" name="sorter_var" value="alphabetically">Alphabetically</button>
       </div>
-    </form>
-    <br><br>
+      </form>
+    </div>
+  </div>
+    <br>
     <tbody>
     <!--LIST OF TASKS-->
     @foreach ($tasks as $task)
