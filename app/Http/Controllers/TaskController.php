@@ -25,12 +25,13 @@ class TaskController extends Controller
       $user = Auth::user();
       $request = request();
       $tasks = $this->taskService->show($user, $request);
-      
+      $hasTasks = Task::where('user_id', $user->id);
       
         
       return view('tasks', [
         'tasks' => $tasks,
         'user' => $user,
+        'hasTasks' => $hasTasks,
         ]);
       }
   

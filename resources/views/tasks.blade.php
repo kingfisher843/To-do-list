@@ -5,23 +5,26 @@
     <button type="submit" class="hovercol-4 col-sm-3 col-md-2 col-lg-2 col-xl-1 btn btn-success text-center rounded-pill">New task</button>
   </form>
   <br>
-  @if(count($tasks))
+  @if($hasTasks)
   <div class="row mt-1">
     <div class="col-md-3">
+    <!--FILTER TOOL-->
       Show tasks:<br>
       <form action="/tasks" method="GET">
         <div class="btn-group" role="group">
-          <button type="submit" class="btn btn-secondary" name="filter_var" value="all">All</button>
-          <button type="sumbit" class="btn btn-secondary" name="filter_var" value="active">Active</button>
-          <button type="submit" class="btn btn-secondary" name="filter_var" value="completed">Completed</button>
+          <button type="submit" class="btn btn-secondary" name="show" value="all">All</button>
+          <button type="sumbit" class="btn btn-secondary" name="show" value="active">Active</button>
+          <button type="submit" class="btn btn-secondary" name="show" value="completed">Completed</button>
         </div>
+      </form>  
     </div>
     <div class="col-md-3">
       Sorted by:<br>
+      <form action="/tasks" method="GET">
       <div class="btn-group col-md-3" role="group">
-        <button type="submit" class="btn btn-secondary" name="sorter_var" value="latest">Latest</button>
-        <button type="submit" class="btn btn-secondary" name="sorter_var" value="oldest">Oldest</button>
-        <button type="submit" class="btn btn-secondary" name="sorter_var" value="alphabetically">Alphabetically</button>
+        <button type="submit" class="btn btn-secondary" name="order" value="latest">Latest</button>
+        <button type="submit" class="btn btn-secondary" name="order" value="oldest">Oldest</button>
+        <button type="submit" class="btn btn-secondary" name="order" value="alphabetically">Alphabetically</button>
       </div>
       </form>
     </div>

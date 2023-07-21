@@ -48,4 +48,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class);
     }
+    public function filter()
+    {
+        return $this->hasOne(Filter::class);
+    }
 }
