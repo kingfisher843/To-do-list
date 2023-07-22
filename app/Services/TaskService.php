@@ -43,13 +43,14 @@ class TaskService
         if(isset($filter)){
           //which tasks will be displayed ($filter->show)
           switch($filter->show){
-            case 'active':
-              $user_tasks = $user_tasks->where("completed", "0");
-              break;
+            case 'all':
+            break;
             case 'completed':
               $user_tasks = $user_tasks->where("completed", "1");
               break;
-
+            default:
+            $user_tasks = $user_tasks->where("completed", "0");
+              break;
           }
 
           //in what order tasks will be displayed ($filter->order)

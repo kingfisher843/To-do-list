@@ -35,8 +35,13 @@ class FilterRepository implements FilterInterface
 
     public function update(Filter $filter, $newData)
     {
-        $filter->show = $newData["show"];
-        $filter->order = $newData["order"];
+        if ($newData["show"]){
+            $filter->show = $newData["show"];
+        }
+        if ($newData["order"]){
+            $filter->order = $newData["order"];
+        }
+        
         $filter->save();
         return $filter;
     }

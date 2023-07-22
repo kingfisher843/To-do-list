@@ -7,7 +7,7 @@
   <br>
   @if($hasTasks)
   <div class="row mt-1">
-    <div class="col-md-3">
+    <div class="col-md-3 text-center">
     <!--FILTER TOOL-->
       Show tasks:<br>
       <form action="/tasks" method="GET">
@@ -18,10 +18,10 @@
         </div>
       </form>  
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 text-center">
       Sorted by:<br>
       <form action="/tasks" method="GET">
-      <div class="btn-group col-md-3" role="group">
+      <div class="btn-group" role="group">
         <button type="submit" class="btn btn-secondary" name="order" value="latest">Latest</button>
         <button type="submit" class="btn btn-secondary" name="order" value="oldest">Oldest</button>
         <button type="submit" class="btn btn-secondary" name="order" value="alphabetically">Alphabetically</button>
