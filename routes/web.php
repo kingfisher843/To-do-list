@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\TaskController;
@@ -74,3 +75,19 @@ Route::delete('/delete/{task}', [TaskController::class, 'destroy']);
  */
 Route::get('/profile', [UserController::class, 'show']);
 Route::patch('profile/{property}', [UserController::class, 'update']);
+
+
+/**
+ * Test routes for production purposes
+ */
+use App\Http\Resources\UserResource;
+ 
+Route::get('/users', function () {
+    return UserResource::collection(User::all());
+});
+
+use App\Http\Resources\TaskResource;
+
+Route::get('/tasx', function () {
+    return TaskResource::collection(Task::all());
+});

@@ -30,7 +30,7 @@
     </div>
   </div>
     <br>
-    <tbody>
+  <div class="overflow-auto">
     <!--LIST OF TASKS-->
     @foreach ($tasks as $task)
       
@@ -93,6 +93,7 @@
       </table>
     @endforeach
 
+  </div>
   @else
     <div class="p-3 text-center text-light bg-info border border-light rounded">
       It seems pretty empty! Maybe you should create new task?
