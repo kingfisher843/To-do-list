@@ -6,7 +6,7 @@
       <div class="content">
     
         <!-- New task form-->
-        <form method="POST" action="{{url('edit/'.$task->id)}}" id="edit">
+        <form method="POST" action="{{url('tasks/'.$task->id)}}" id="edit">
           @csrf  
           @method('PATCH')
               <label for="name" class="form-label">Task:</label><br>

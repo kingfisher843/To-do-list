@@ -1,7 +1,7 @@
 <x-layout>
 
   <!--NEW TASK BUTTON-->
-  <form action="/tasks/new" class="text-center">
+  <form action="/tasks/create" class="text-center">
     <button type="submit" class="hovercol-4 col-sm-3 col-md-2 col-lg-2 col-xl-1 btn btn-success text-center rounded-pill">New task</button>
   </form>
   <br>
@@ -53,12 +53,13 @@
         <tr>
           <!--CHECKBOX-->
           <div class="form-check">
-            <form action="{{url('check/'.$task->id)}}" method="POST">
+            <form action="{{url('tasks/'.$task->id)}}" method="POST">
               @csrf
               @method('PATCH')
               <td rowspan="2" class="col-2 col-md-1 text-center align-middle {{ $checkboxBg ?? 'bg-primary' }}">
-               
-                <button class="btn check-me btn-square-md btn-sq-responsive" type="submit" id="checkbox" name="checkbox">
+              <!-- hidden input contains task name - that is necessary to pass the request validation-->  
+              <input type="hidden" name="name" value="{{$task->name}}"> 
+                <button class="btn check-me btn-square-md btn-sq-responsive" type="submit" id="checkbox" name="checkbox" value="check">
                   <h2><i class="{{ $checkboxClass ?? 'bi-square' }}"></i></h2>
                 </button>
               </td>
@@ -70,13 +71,13 @@
           <td class="col-8 col-md-9"><h4 class="{{ $checkboxText ?? 'text-dark' }}"> {{ $task->name }}</h4></td>
           <!--EDIT-->
           <td rowspan="2" class="col-1 text-center align-middle">
-            <form action="{{url('edit/'.$task->id)}}" method="GET" id="edit-form-{{$task->id}}">
+            <form action="{{url('tasks/'.$task->id.'/edit')}}" method="GET" id="edit-form-{{$task->id}}">
               <button class="btn btn-dark w-100 d-inline" type="submit"><i class="bi bi-pencil-square"></i></button>
             </form>  
           </td>
           <!--DELETE-->
           <td rowspan="2" class="col-1 text-center align-middle">
-            <form class="d-inline" action="{{url('delete/'.$task->id)}}" id="delete-form.{{$task->id}}" method="POST">
+            <form class="d-inline" action="{{url('tasks/'.$task->id)}}" id="delete-form.{{$task->id}}" method="POST">
               @csrf
               @method('DELETE')
               <button class="btn btn-danger w-100 d-inline" type="submit" form="delete-form.{{$task->id}}"><i class="bi bi-trash3"></i></button>

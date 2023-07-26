@@ -7,7 +7,7 @@
   <div class="content">
   <br>
     <!-- New task form-->
-    <form method="POST" action="{{url('/tasks/new')}}" id="newtask" name="newtask">
+    <form method="POST" action="{{url('/tasks')}}" id="newtask" name="newtask">
       @csrf  
           <label for="name" class="form-label"><h5>Task:</h5></label>
           <input type="text" name="name" id="name" class="form-control" placeholder="e.g. clean this mess from your desk">

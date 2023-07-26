@@ -8,7 +8,8 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Resources\TaskResource;
+use App\Http\Resources\UserResource;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,28 +25,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/**
- * Register
- */
-Route::redirect('/', '/register');
-
-Route::get('/register', [RegisterController::class, 'show']);
-Route::post('/register', [RegisterController::class, 'store']);
-
-/**
- * Login & logout (Session)
- */
-Route::get('/login', [SessionController::class, 'show']);
-Route::post('/login', [SessionController::class, 'login']);
-Route::get('/logout', [SessionController::class, 'destroy']);
-
-
-
 
 /**
 * Display tasks
 */
-Route::get('/tasks', [TaskController::class, 'show']);
+Route::get('/tasks', function () {
+    return TaskResource::collection(Task::all());
+});
 
 /**
 * Add new task
@@ -74,3 +60,28 @@ Route::delete('/delete/{task}', [TaskController::class, 'destroy']);
  */
 Route::get('/profile', [UserController::class, 'show']);
 Route::patch('profile/{property}', [UserController::class, 'update']);
+
+/**
+ * Register
+ */
+Route::redirect('/', '/register');
+
+Route::get('/register', [RegisterController::class, 'show']);
+Route::post('/register', [RegisterController::class, 'store']);
+
+/**
+ * Login & logout (Session)
+ */
+Route::get('/login', [SessionController::class, 'show']);
+Route::post('/login', [SessionController::class, 'login']);
+Route::get('/logout', [SessionController::class, 'destroy']);
+
+Route::get('/users', function () {
+    return UserResource::collection(User::all());
+});
+
+
+
+Route::get('/tasx', function () {
+    
+});

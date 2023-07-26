@@ -90,8 +90,10 @@ class TaskService
       return $task;
     }
 
-    public function check(Task $task, User $user)
+    public function check($id, User $user)
     {
+      $task = Task::findOrFail($id);
+
       if ($task->completed){
         $task->completed = 0;
         $user->completed_tasks -= 1;
@@ -102,6 +104,7 @@ class TaskService
       
       $task->save();
       $user->save();
+      
       return $task;
     }
 

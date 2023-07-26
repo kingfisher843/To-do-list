@@ -42,33 +42,10 @@ Route::get('/logout', [SessionController::class, 'destroy']);
 
 
 
+Route::resources([
+    'tasks' => TaskController::class,
+]);
 
-/**
-* Display tasks
-*/
-Route::get('/tasks', [TaskController::class, 'show']);
-
-/**
-* Add new task
-*/
-Route::get('/tasks/new', [TaskController::class, 'create']);
-Route::post('/tasks/new', [TaskController::class, 'store']);
-
-/**
- * Edit task
- */
-Route::get('/edit/{task}', [TaskController::class, 'edit']);
-Route::patch('/edit/{task}', [TaskController::class, 'update']);
-
-/**
- * Checkbox functionality
- */
-Route::patch('/check/{task}', [TaskController::class, 'check']);
-
-/**
-* Delete task
-*/
-Route::delete('/delete/{task}', [TaskController::class, 'destroy']);
 
 /**
  * User profile
@@ -82,12 +59,3 @@ Route::patch('profile/{property}', [UserController::class, 'update']);
  */
 use App\Http\Resources\UserResource;
  
-Route::get('/users', function () {
-    return UserResource::collection(User::all());
-});
-
-use App\Http\Resources\TaskResource;
-
-Route::get('/tasx', function () {
-    return TaskResource::collection(Task::all());
-});
