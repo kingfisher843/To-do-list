@@ -31,7 +31,7 @@
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             @if(auth()->check())
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="/profile"><b>Hi {{ auth()->user()->username }}!</b></a>
+                <a class="nav-link" aria-current="page" href="{{url('users/'. auth()->user()->id)}}"><b>Hi {{ auth()->user()->username }}!</b></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/tasks">Tasks</a>
@@ -39,9 +39,12 @@
               <li class="nav-item">
                 <a class="nav-link" href="/logout">Log out</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link font-weight-bold" href="{{url('users/'. auth()->user()->id)}}"><i class="bi bi-gear-fill"></i></a>
+              </li>
             @else
               <li class="nav-item">
-                <a class="nav-link" href="/register">Join TaskMe!</a>
+                <a class="nav-link" href="/users/create">Join TaskMe!</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/login">Log in</a>
@@ -52,9 +55,6 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Contact</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link font-weight-bold" href="/profile"><i class="bi bi-gear-fill"></i></a>
               </li>
           </ul>
         </div>

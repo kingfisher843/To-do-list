@@ -74,7 +74,11 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $task = Task::findOrFail($id);
+        return response()->json([
+            'name' => $task->name,
+            'description' => $task->description
+        ]);
     }
 
     /**

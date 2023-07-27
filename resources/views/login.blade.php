@@ -13,7 +13,7 @@
                         <br>
                         <p class="text-center"><button class="btn btn-warning text-center rounded">Log in</button></p>
 
-                        <a href="/register">Don't have an account yet? Go on and make one!</a>
+                        <a href="/users/create">Don't have an account yet? Go on and make one!</a>
                     </form>
                 </td>
             </tr>    

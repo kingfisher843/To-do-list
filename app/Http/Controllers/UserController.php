@@ -6,42 +6,100 @@ use Illuminate\Http\Request;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Requests\UserRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+use App\Models\User;
+
+
 
 class UserController extends Controller
 {
     public function __construct(protected UserService $userService)
     {
-        
+        $this->middleware('auth');  
+    }
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
     }
 
-    //shows profile of user
-    public function show()
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
-        if(Auth::check()){
-        $user = Auth::user();
+        return view('registration');
+    }
+
+    /**
+     * Store a newly created resource in storage. (POST '/users')
+     */
+    public function store(UserRequest $request)
+    {
+        $userData = [
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'completed_tasks' => 0,
+        ];
+
+        $user = User::create($userData);
+        Auth::login($user);
+
+        return redirect('/tasks')->with('welcome', 'Oh sweet! Looks like we have new user!');   
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $user = User::findOrFail($id);
         
-        return view('profile', ['user' => $user]);
-        } else {
+            return view('profile', ['user' => $user]);
+
             return redirect('/');
-        }
+    }
+    
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $user = User::findOrFail($id);
+        return view('profile', [
+            'user' => $user
+            ]);
     }
 
-    public function update($property, Request $request)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(User $user, Request $request)
     {
-        if(Auth::check()){
-            $user = Auth::user();
             
-            Artisan::call('user:update', [
-                'user_id' => $user->id,
-                'property' => $property,
-                'value' => $request->input('value'),
-            ]);
+            $newUserData = $request->all();
+
+            $this->userService->update($user, $newUserData);
             
-        $user = Auth::user()->fresh();
+            $user->save();
+            $user = Auth::user()->fresh();
 
             return view('profile', ['user' => $user]);
-        } else {
-          return redirect('/');
-        }
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $this->userService->delete($id);
+        return redirect ('/');
     }
 }

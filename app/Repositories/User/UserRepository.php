@@ -28,9 +28,28 @@ class UserRepository implements UserInterface
        return $this->user->create($userData);
     }
 
-    public function update($id, array $newUserData)
+    public function update(User $user, array $newUserData)
     {
-        return $this->user->find($id)->update($newUserData);
+        if (isset($newUserData["username"])){
+
+            $user->username = $newUserData["username"];
+
+        }
+        
+        //This condition will be useful later to send confirm on new adress
+        if (isset($newUserData["email"])){
+
+            $user->email = $newUserData["email"];
+
+        }
+        if (isset($newUserData["password"])){
+
+            $user->password = bcrypt($newUserData["password"]);
+
+        }
+
+        return $user;
+        
     }
 
     public function delete($id)

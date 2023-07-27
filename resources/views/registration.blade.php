@@ -6,7 +6,7 @@
             <table class="table table-bordered border-secondary bg-light rounded">
                 <tr>
                     <td>
-                        <form method="POST" action="{{url('/register')}}" id="sign-in" name="sign-up">
+                        <form method="POST" action="{{url('/users')}}" id="sign-in" name="sign-up">
                             @csrf  
                             <label for="username" class="form-label"><h6>Username:</h6></label>
                             <input type="text" name="username" class="form-control" placeholder="username" value="{{ old('username') }}">

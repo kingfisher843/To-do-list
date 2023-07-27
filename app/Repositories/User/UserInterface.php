@@ -2,6 +2,8 @@
 
 namespace App\Repositories\User;
 
+use App\Models\User;
+
 interface UserInterface {
 
     public function getAll();
@@ -10,7 +12,7 @@ interface UserInterface {
 
     public function store(array $userData);
 
-    public function update($id, array $newUserData);
+    public function update(User $user, array $newUserData);
 
     public function delete($id);
 }

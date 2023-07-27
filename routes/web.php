@@ -13,13 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\TaskController;
-use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
 
@@ -28,10 +26,8 @@ use App\Http\Controllers\UserController;
 /**
  * Register
  */
-Route::redirect('/', '/register');
+Route::redirect('/', '/users/create');
 
-Route::get('/register', [RegisterController::class, 'show']);
-Route::post('/register', [RegisterController::class, 'store']);
 
 /**
  * Login & logout (Session)
@@ -44,18 +40,6 @@ Route::get('/logout', [SessionController::class, 'destroy']);
 
 Route::resources([
     'tasks' => TaskController::class,
+    'users' => UserController::class,
 ]);
-
-
-/**
- * User profile
- */
-Route::get('/profile', [UserController::class, 'show']);
-Route::patch('profile/{property}', [UserController::class, 'update']);
-
-
-/**
- * Test routes for production purposes
- */
-use App\Http\Resources\UserResource;
  
