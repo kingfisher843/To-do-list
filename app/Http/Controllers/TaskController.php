@@ -17,29 +17,30 @@ class TaskController extends Controller
 {
     public function __construct(protected TaskService $taskService, protected TaskRepository $taskRepository)
     {
+        //$this->middleware('auth');  
     }
     /**
      * Display a listing of the resource (GET '/tasks')
      */
     public function index()
     {
+        $user = Auth::user();
+        $request = request();
+        $tasks = $this->taskService->show($user, $request);
+        $hasTasks = Task::where('user_id', $user->id);            
 
-        if (Auth::check()) {
-            $user = Auth::user();
-            $request = request();
-            $tasks = $this->taskService->show($user, $request);
-            $hasTasks = Task::where('user_id', $user->id);
-            
-                
-            return view('tasks', [
-                'tasks' => $tasks,
-                'user' => $user,
-                'hasTasks' => $hasTasks,
-            ]);
-        }
+        //API
+        $prefix = request()->route()->getPrefix();
         
-        return view('login', [
-            "message" => "Please log in first!"
+        if ($prefix === 'api'){
+            
+            return new TaskResource($tasks);
+        }
+
+        return view('tasks', [
+            'tasks' => $tasks,
+            'user' => $user,                
+            'hasTasks' => $hasTasks,
         ]);
     }
 
@@ -48,9 +49,7 @@ class TaskController extends Controller
      */
     public function create(Request $request): View
     {
-        if (Auth::check()) {
         return view('newtask');
-        }
     }
 
     /**
@@ -58,15 +57,14 @@ class TaskController extends Controller
      */
     public function store(TaskRequest $request): RedirectResponse
     {
-        if (Auth::check()) {
-            $taskData = $request->all();
-            $user = Auth::user();
+ 
+        $taskData = $request->all();
+        $user = Auth::user();
 
-            $this->taskService->store($taskData, $user);
+        $this->taskService->store($taskData, $user);
             
-            return redirect('/tasks');
-        }
-        return redirect('/')->with('message', 'Please log in first!'); 
+        return redirect('/tasks');
+   
     }
 
     /**
@@ -74,11 +72,7 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        $task = Task::findOrFail($id);
-        return response()->json([
-            'name' => $task->name,
-            'description' => $task->description
-        ]);
+        
     }
 
     /**

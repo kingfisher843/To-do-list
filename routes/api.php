@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Task;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Controllers\ApiControllers\TaskController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\UserController;
-use App\Http\Resources\TaskResource;
-use App\Http\Resources\UserResource;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,15 +22,17 @@ use App\Http\Resources\UserResource;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::prefix('api')->group(function () {
+
+Route::name('api.')->group(function () {
     Route::apiResources([
-        'tasks' => 'TaskController',
-        'users' => 'UserController'
+        'tasks' => TaskController::class,
+        'users' => UserController::class,
     ]);
     
     /**
      * Login & logout (Session)
      */
+    
     Route::get('/login', [SessionController::class, 'show']);
     Route::post('/login', [SessionController::class, 'login']);
     Route::get('/logout', [SessionController::class, 'destroy']);

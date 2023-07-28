@@ -5,6 +5,7 @@
     <button type="submit" class="hovercol-4 col-sm-3 col-md-2 col-lg-2 col-xl-1 btn btn-success text-center rounded-pill">New task</button>
   </form>
   <br>
+
   @if($hasTasks)
   <div class="row mt-1">
     <div class="col-md-3 text-center">
@@ -31,6 +32,7 @@
   </div>
     <br>
   <div class="overflow-auto">
+    
     <!--LIST OF TASKS-->
     @foreach ($tasks as $task)
       

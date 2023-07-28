@@ -17,7 +17,7 @@ class UserController extends Controller
 {
     public function __construct(protected UserService $userService)
     {
-        $this->middleware('auth');  
+        
     }
     /**
      * Display a listing of the resource.
