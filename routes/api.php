@@ -5,9 +5,7 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Controllers\TaskController;
-use App\Http\Controllers\SessionController;
-use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,18 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::name('api.')->group(function () {
+
+// api/v1/
+Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\v1'], function () {
+
     Route::apiResources([
         'tasks' => TaskController::class,
         'users' => UserController::class,
     ]);
-    
-    /**
-     * Login & logout (Session)
-     */
-    
-    Route::get('/login', [SessionController::class, 'show']);
-    Route::post('/login', [SessionController::class, 'login']);
-    Route::get('/logout', [SessionController::class, 'destroy']);
-    
 });

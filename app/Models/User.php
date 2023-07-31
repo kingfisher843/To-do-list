@@ -48,8 +48,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class);
     }
+
     public function filter()
     {
         return $this->hasOne(Filter::class);
+    }
+
+    public function generateToken()
+    {
+        $this->api_token = str_random(60);
+        $this->save();
+
+        return $this->api_token;
     }
 }

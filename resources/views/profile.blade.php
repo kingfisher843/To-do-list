@@ -14,7 +14,7 @@
                <div class="col-sm-5">
                   <form method="POST" action="{{url('users/'.$user->id)}}" id="update_username"  onsubmit="confirm ('Are you sure you want to change your username?');">
                      @csrf  
-                     @method('PATCH')
+                     @method('put')
                      <label for="username">Username:</label>
 
                      <div class="col-sm-3 input-group mb-3">
@@ -39,7 +39,7 @@
                <div class="col-sm-5">
                   <form method="POST" action="{{url('users/'.$user->id)}}" id="update_email"  onsubmit="confirm ('Are you sure you want to change your e-mail? Owner of this address will be contacted to ensure!');">
                      @csrf  
-                     @method('PATCH')
+                     @method('PUT')
                      <label for='email'>E-mail:</label>
 
                      <div class='col-sm-3 input-group mb-3'>
@@ -62,7 +62,7 @@
                <div class="col-sm-5">
                   <form method="POST" action="{{url('users/'.$user->id)}}" id="update_password"  onsubmit="confirm ('Do you really want to change password?');" autocomplete="off">
                      @csrf  
-                     @method('PATCH')
+                     @method('PUT')
                      <label for="password">Password:</label>
                      <div class="col-sm-3 input-group mb-3">
                         <div class="input-group-prepend">

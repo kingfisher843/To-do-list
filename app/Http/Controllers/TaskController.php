@@ -17,7 +17,7 @@ class TaskController extends Controller
 {
     public function __construct(protected TaskService $taskService, protected TaskRepository $taskRepository)
     {
-        //$this->middleware('auth');  
+        $this->middleware('auth');  
     }
     /**
      * Display a listing of the resource (GET '/tasks')
@@ -25,17 +25,10 @@ class TaskController extends Controller
     public function index()
     {
         $user = Auth::user();
+
         $request = request();
         $tasks = $this->taskService->show($user, $request);
-        $hasTasks = Task::where('user_id', $user->id);            
-
-        //API
-        $prefix = request()->route()->getPrefix();
-        
-        if ($prefix === 'api'){
-            
-            return new TaskResource($tasks);
-        }
+        $hasTasks = Task::where('user_id', $user->id);
 
         return view('tasks', [
             'tasks' => $tasks,
@@ -61,7 +54,7 @@ class TaskController extends Controller
         $taskData = $request->all();
         $user = Auth::user();
 
-        $this->taskService->store($taskData, $user);
+        $task = $this->taskService->store($taskData, $user);
             
         return redirect('/tasks');
    
@@ -72,7 +65,7 @@ class TaskController extends Controller
      */
     public function show(string $id)
     {
-        
+        return redirect('tasks');
     }
 
     /**
@@ -87,7 +80,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Update the specified resource in storage. (PUT/PATCH '/tasks/{task}')
+     * Update the specified resource in storage. (PUT/PUT '/tasks/{task}')
      */
     public function update(Task $task, TaskRequest $request)
     {
@@ -99,6 +92,7 @@ class TaskController extends Controller
         } else {
             $this->taskService->update($task->id, $newTaskData, $user);
         }
+
         return redirect('/tasks');
     }
   
@@ -108,7 +102,8 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {   
-      $this->taskService->destroy($task->id);
-      return redirect('/tasks')->with('success', 'Task deleted.');
+        $this->taskService->destroy($task->id);
+
+        return redirect('/tasks')->with('success', 'Task deleted.');
     }
 }

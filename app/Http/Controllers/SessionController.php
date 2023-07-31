@@ -25,7 +25,19 @@ class SessionController extends Controller
 
         if (Auth::attempt($credentials)) {
 
+            $user = Auth::user();
+
+            $user->generateToken();
+
             $request->session()->regenerate();
+
+        if ($prefix == 'api'){
+
+            return response()->json([
+                'data' => $user->toArray(),
+            ]);
+            
+        }
             return redirect()->intended('/tasks');
 
         } else {

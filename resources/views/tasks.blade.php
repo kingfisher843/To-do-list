@@ -5,7 +5,6 @@
     <button type="submit" class="hovercol-4 col-sm-3 col-md-2 col-lg-2 col-xl-1 btn btn-success text-center rounded-pill">New task</button>
   </form>
   <br>
-
   @if($hasTasks)
   <div class="row mt-1">
     <div class="col-md-3 text-center">
@@ -57,7 +56,7 @@
           <div class="form-check">
             <form action="{{url('tasks/'.$task->id)}}" method="POST">
               @csrf
-              @method('PATCH')
+              @method('PUT')
               <td rowspan="2" class="col-2 col-md-1 text-center align-middle {{ $checkboxBg ?? 'bg-primary' }}">
               <!-- hidden input contains task name - that is necessary to pass the request validation-->  
               <input type="hidden" name="name" value="{{$task->name}}"> 
