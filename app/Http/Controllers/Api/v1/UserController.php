@@ -7,15 +7,29 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Resources\v1\UserResource;
 use App\Http\Resources\v1\UserCollection;
+use App\Filters\v1\UserFilter;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return new UserCollection(User::all());
+        $filter = new UserFilter();
+        $queryResponse = $filter->transform($request); //'column' (param), 'operator', 'value'
+            
+        $includeTasks = $request->query('includeTasks');
+
+        $users = User::where($queryResponse);
+
+        if($includeTasks){
+            $users = $users->with('tasks');
+        }
+
+        
+
+        return new UserCollection($users->paginate()->appends($request->query()));
     }
 
     /**

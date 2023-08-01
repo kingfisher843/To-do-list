@@ -6,15 +6,24 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Http\Resources\v1\TaskResource;
+use App\Http\Resources\v1\TaskCollection;
+use App\Filters\v1\TaskFilter;
 
 class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Task::all();
+        $filter = new TaskFilter();
+
+        $queryResponse = $filter->transform($request); //'column' (param), 'operator', 'value'
+
+            
+        $tasks = Task::where($queryResponse)->paginate();
+
+        return new TaskCollection($tasks->appends($request->query()));
     }
 
     /**
