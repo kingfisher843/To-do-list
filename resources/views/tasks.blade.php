@@ -56,7 +56,7 @@
           <div class="form-check">
             <form action="{{url('tasks/'.$task->id)}}" method="POST">
               @csrf
-              @method('PUT')
+              @method('PATCH')
               <td rowspan="2" class="col-2 col-md-1 text-center align-middle {{ $checkboxBg ?? 'bg-primary' }}">
               <!-- hidden input contains task name - that is necessary to pass the request validation-->  
               <input type="hidden" name="name" value="{{$task->name}}"> 

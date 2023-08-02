@@ -8,9 +8,15 @@ use App\Models\Task;
 use App\Http\Resources\v1\TaskResource;
 use App\Http\Resources\v1\TaskCollection;
 use App\Filters\v1\TaskFilter;
+use App\Services\TaskService;
+use App\Repositories\Task\TaskRepository;
+use App\Http\Requests\v1\StoreTaskRequest;
 
 class TaskController extends Controller
 {
+    public function __construct(protected TaskService $taskService, protected TaskRepository $taskRepository)
+    {
+    }
     /**
      * Display a listing of the resource.
      */
@@ -29,9 +35,9 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTaskRequest $request)
     {
-        //
+        return new TaskResource(Task::create($request->all()));
     }
 
     /**

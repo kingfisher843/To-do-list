@@ -8,7 +8,7 @@
         <!-- New task form-->
         <form method="POST" action="{{url('tasks/'.$task->id)}}" id="edit">
           @csrf  
-          @method('PUT')
+          @method('PATCH')
               <label for="name" class="form-label">Task:</label><br>
               <input type="text" id="name" name="name" class="form-control" value="{{$task->name}}" required>
               <br>

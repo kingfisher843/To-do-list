@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Http\Resources\v1\UserResource;
 use App\Http\Resources\v1\UserCollection;
 use App\Filters\v1\UserFilter;
+use App\Http\Requests\v1\StoreUserRequest;
+use App\Http\Requests\v1\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -35,9 +37,9 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+        return new UserResource(User::create($request->all()));
     }
 
     /**
@@ -51,9 +53,9 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+        $user->update($request->all());
     }
 
     /**

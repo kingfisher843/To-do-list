@@ -80,7 +80,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Update the specified resource in storage. (PUT/PUT '/tasks/{task}')
+     * Update the specified resource in storage. (PUT/PATCH '/tasks/{task}')
      */
     public function update(Task $task, TaskRequest $request)
     {
