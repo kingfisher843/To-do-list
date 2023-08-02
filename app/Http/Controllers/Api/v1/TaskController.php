@@ -53,7 +53,7 @@ class TaskController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $task->update($request->all());
     }
 
     /**
@@ -61,6 +61,6 @@ class TaskController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $task->delete();
     }
 }
