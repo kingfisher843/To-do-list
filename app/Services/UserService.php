@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Services;
-use App\Repositories\User\UserRepository;
+
 use App\Models\User;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\Repositories\User\UserRepository;
+use Illuminate\Support\Facades\Validator;
 
 class UserService
 {

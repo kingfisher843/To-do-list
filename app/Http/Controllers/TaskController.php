@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use App\Http\Requests\TaskRequest;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\Services\TaskService;
+use App\Http\Requests\TaskRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 use App\Repositories\Task\TaskRepository;
 
 

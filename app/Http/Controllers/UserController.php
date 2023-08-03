@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Services\UserService;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Artisan;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
-use App\Models\User;
+use Illuminate\Support\Facades\Artisan;
 
 
 

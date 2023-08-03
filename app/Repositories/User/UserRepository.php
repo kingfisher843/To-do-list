@@ -2,8 +2,8 @@
 
 namespace App\Repositories\User;
 
-use App\Repositories\User\UserInterface;
 use App\Models\User;
+use App\Repositories\User\UserInterface;
 
 class UserRepository implements UserInterface
 {

@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Services;
+
+use App\Models\Task;
+use App\Models\User;
+use App\Models\Filter;
 use App\Repositories\Task\TaskRepository;
 use App\Repositories\Filter\FilterRepository;
-use App\Models\Task;
-use App\Models\Filter;
-use App\Models\User;
 
 class TaskService
 {

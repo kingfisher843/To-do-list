@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\Task;
+use Illuminate\Http\Request;
+use App\Services\TaskService;
+use App\Filters\v1\TaskFilter;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\TaskResource;
 use App\Http\Resources\v1\TaskCollection;
-use App\Filters\v1\TaskFilter;
-use App\Services\TaskService;
 use App\Repositories\Task\TaskRepository;
 use App\Http\Requests\v1\StoreTaskRequest;
 
