@@ -39,7 +39,14 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        return new UserResource(User::create($request->all()));
+        $user = User::create($request->all());
+        $token = $user->createToken('api-app')->accessToken;
+        $response = [
+            "username" => $username,
+            "token" => $token,
+        ];
+        
+        return new UserResource($response);
     }
 
     /**
@@ -66,3 +73,4 @@ class UserController extends Controller
         $user->delete();
     }
 }
+

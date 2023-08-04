@@ -21,7 +21,8 @@ class UserResource extends JsonResource
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
             'completedTasks' => $this->completed_tasks,
-            'tasks' => TaskResource::collection($this->whenLoaded('tasks'))
+            'tasks' => TaskResource::collection($this->whenLoaded('tasks')),
+            'token' => $this->token,
         ];
     }
 }

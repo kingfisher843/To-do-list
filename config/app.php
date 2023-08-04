@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\UserRepoServiceProvider::class,
         App\Providers\TaskRepoServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
     ])->toArray(),
 
     /*
