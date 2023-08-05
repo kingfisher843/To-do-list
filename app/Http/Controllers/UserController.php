@@ -10,6 +10,7 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Requests\UpdateUserRequest;
 
 
 
@@ -58,11 +59,20 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::findOrFail($id);
-        
-            return view('profile', ['user' => $user]);
+        if (Auth::check()){
+            
+            $user = User::findOrFail($id);
+            $active_user = Auth::user();
 
+            if ($user === $active_user){
+                return view('profile', ['user' => $user]);
+            } else {
+                return view('profile', ['user' => $active_user]);
+            }
+            
+        } else {
             return redirect('/');
+        }  
     }
     
 
@@ -80,18 +90,42 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(User $user, Request $request)
+    public function update(User $user, UpdateUserRequest $request)
     {
-            
+            $status = true;
             $newUserData = $request->all();
 
-            $this->userService->update($user, $newUserData);
-            
-            $user->save();
-            $user = Auth::user()->fresh();
+            if (isset($newUserData['old_password'])){
 
-            return view('profile', ['user' => $user]);
+                $user = Auth::user();
+                $old_password = ($newUserData['old_password']);
 
+                if (Auth::attempt(['username' => $user->username, 'password' => $old_password])){
+
+                    $this->userService->update($user, $newUserData);
+                    $user->save();
+                    $user = Auth::user()->fresh();
+                    return view('profile', [
+                        'user' => $user,
+                        'password_success' => "Done!",
+                    ]);
+                    
+                } else {
+                    return view('profile', [
+                        'user' => $user,
+                        'password_error' => "Old password is invalid!",
+                    ]);
+                }
+            } else {
+
+                $this->userService->update($user, $newUserData);
+                $user->save();
+                $user = Auth::user()->fresh();
+                return view('profile', [
+                    'user' => $user,
+                    'username_success' => "Done!",
+                ]);
+            }
     }
 
     /**

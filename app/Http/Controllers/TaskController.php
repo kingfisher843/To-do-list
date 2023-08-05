@@ -28,8 +28,9 @@ class TaskController extends Controller
 
         $request = request();
         $tasks = $this->taskService->show($user, $request);
-        $hasTasks = Task::where('user_id', $user->id);
-
+        $hasTasks = Task::where('user_id', $user->id)->get();
+        $hasTasks = count($hasTasks);
+        
         return view('tasks', [
             'tasks' => $tasks,
             'user' => $user,                
