@@ -22,11 +22,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-// api/v1/
+/**
+ * /api/v1
+ */
 Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\v1'], function () {
 
     Route::apiResources([
         'tasks' => TaskController::class,
         'users' => UserController::class,
     ]);
+
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+
 });

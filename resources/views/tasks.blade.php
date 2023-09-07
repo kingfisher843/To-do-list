@@ -111,10 +111,5 @@
             Hi, {{$user->username}}! Your list of task seems pretty empty, don't you think? Maybe you should fix this by creating new task?
             You can do that very simply by clicking this green button above!
         </div>
-
-        <div class="text-center text-secondary">
-          Hi, {{$user->username}}! Your list of task seems pretty empty, don't you think? Maybe you should fix this by creating new task?
-          You can do that very simply by clicking this green button above!
-      </div>
     @endif
 </x-layout>

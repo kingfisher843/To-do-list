@@ -40,7 +40,7 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $user = User::create($request->all());
-        $token = $user->createToken('api-app')->accessToken;
+        $token = $user->createToken('user_auth_token')->accessToken;
         $response = [
             "username" => $username,
             "token" => $token,
